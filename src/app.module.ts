@@ -4,6 +4,7 @@ import { Connection } from 'typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { UserModule } from './user/user.module';
+import { configService } from './config/config.service';
 
 
 @Module({
@@ -11,7 +12,7 @@ import { UserModule } from './user/user.module';
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     UserModule
   ],
 })
