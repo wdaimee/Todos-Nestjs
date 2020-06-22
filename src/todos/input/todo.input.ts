@@ -1,8 +1,7 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
-@ObjectType()
-export class CreateTodoDto {
-    @Field() readonly id?: string;
+@InputType()
+export class InputTodo {
     @Field() readonly title: string;
     @Field() readonly body: string;
     @Field() readonly dueDate: Date;

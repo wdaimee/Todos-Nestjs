@@ -13,10 +13,10 @@ export class Todo {
     body: string;
 
     @CreateDateColumn({type: 'date'})
-    due_date: Date;
+    dueDate: Date;
 
     @CreateDateColumn({type: 'date'})
-    date_completed: Date;
+    dateCompleted: Date;
 
     @Column('varchar', {length: 100})
     status: string;

@@ -4,6 +4,7 @@ import { Connection } from 'typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { UserModule } from './user/user.module';
+import { TodoModule } from './todos/todo.module';
 import { configService } from './config/config.service';
 
 
@@ -13,7 +14,8 @@ import { configService } from './config/config.service';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-    UserModule
+    UserModule,
+    TodoModule
   ],
 })
 
