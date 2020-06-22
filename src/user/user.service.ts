@@ -23,7 +23,7 @@ export class UserService {
         await this.userRepository.delete(id);
     }
 
-    async createUser (data: CreateUserDto ): Promise<User> {
+    async createUser(data: CreateUserDto): Promise<User> {
         const user = new User();
         user.username = data.username;
         user.email = data.email;
