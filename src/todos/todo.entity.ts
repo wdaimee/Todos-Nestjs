@@ -21,8 +21,6 @@ export class Todo {
     @Column('varchar', {length: 100})
     status: string;
 
-    //UserId FK
-
     @ManyToOne(type => User, user => user.todos)
     user: User;
 }
