@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Todo } from './todo.entity';
-import { CreateTodoDto } from './dto/create-todo.dto';
+import { CreateTodoDto, AddDateCompletedTodo } from './dto/create-todo.dto';
 
 
 //TODO User Authentication and use logged in user to find all the services bellow
@@ -15,6 +15,10 @@ export class TodoService {
     //Find all Todos that belong to a user
     findAll(): Promise<Todo[]> {
         return this.todoRepository.find({})
+    }
+
+    allOpen(): Promise<Todo[]> {
+        return this.todoRepository.find({status: 'open'})
     }
 
     findOne(id: string): Promise<Todo> {
@@ -33,6 +37,16 @@ export class TodoService {
         todo.dueDate = data.dueDate;
         todo.dateCompleted = data.dateCompleted;
         todo.status = 'open';
+
+        await this.todoRepository.save(todo);
+
+        return todo;
+    }
+
+    async addDateCompleted(id: string, data: AddDateCompletedTodo): Promise<Todo> {
+        const todo = this.todoRepository.findOne(id);
+        todo.dateCompleted = data.dateCompleted;
+        todo.status = 'complete';
 
         await this.todoRepository.save(todo);
 

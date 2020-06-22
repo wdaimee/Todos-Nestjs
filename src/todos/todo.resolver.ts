@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Todo } from './todo.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoService } from './todo.service';
-import { InputTodo } from './input/todo.input';
+import { InputTodo, DateCompletedTodo } from './input/todo.input';
 
 @Resolver(() => Todo)
 export class TodoResolver {
@@ -11,6 +11,12 @@ export class TodoResolver {
     @Query(() => [ CreateTodoDto ])
     async allTodos() {
         return this.todoService.findAll();
+    }
+
+    //Find all open Todos for a user
+    @Query(() => [ CreateTodoDto ])
+    async allOpenTodos() {
+        return this.todoService.allOpen();
     }
 
     @Query(() => CreateTodoDto)
@@ -27,4 +33,10 @@ export class TodoResolver {
     async deleteTodo(@Args('id') id: string) {
         return this.todoService.remove(id);
     }
+
+    @Mutation(() => CreateTodoDto) 
+    async dateCompleted(@Args('id', 'data') id: string, data: DateCompletedTodo) {
+        return this.todoService.addDateCompleted(id, data)
+    }
+    
 }

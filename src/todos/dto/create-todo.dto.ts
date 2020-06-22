@@ -9,3 +9,8 @@ export class CreateTodoDto {
     @Field() readonly dateCompleted?: Date;
     @Field() readonly status?: string;
 }
+
+@ObjectType()
+export class AddDateCompletedTodo {
+    @Field() readonly dateCompleted: Date;
+}

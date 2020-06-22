@@ -8,3 +8,8 @@ export class InputTodo {
     @Field() readonly dateCompleted?: Date;
     @Field() readonly status?: string;
 }
+
+@InputType()
+export class DateCompletedTodo {
+    @Field() readonly dateCompleted: Date;
+}
