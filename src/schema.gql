@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CreateTodoDto {
+  id: String!
+  title: String!
+  body: String!
+  dueDate: DateTime!
+  dateCompleted: DateTime!
+  status: String!
+}
+
 type CreateUserDto {
   id: String!
   username: String!
@@ -9,6 +18,19 @@ type CreateUserDto {
   password: String!
   firstName: String!
   lastName: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input InputTodo {
+  title: String!
+  body: String!
+  dueDate: DateTime!
+  dateCompleted: DateTime!
+  status: String!
 }
 
 input InputUser {
@@ -21,9 +43,13 @@ input InputUser {
 
 type Mutation {
   createUser(data: InputUser!): CreateUserDto!
+  createTodo(data: InputTodo!): CreateTodoDto!
 }
 
 type Query {
   allUsers: [CreateUserDto!]!
   user(id: String!): CreateUserDto!
+  allTodos: [CreateTodoDto!]!
+  allOpenTodos: [CreateTodoDto!]!
+  todo(id: String!): CreateTodoDto!
 }

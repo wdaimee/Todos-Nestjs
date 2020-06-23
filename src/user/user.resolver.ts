@@ -14,8 +14,8 @@ export class UserResolver {
     }
 
     @Query(() => CreateUserDto)
-    async user(@Args('id') id: string) {
-        return this.userService.findOne(id);
+    async user(@Args('username') username: string) {
+        return this.userService.findOne(username);
     }
 
     @Mutation(() => CreateUserDto)

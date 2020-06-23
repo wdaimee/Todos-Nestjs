@@ -29,14 +29,14 @@ export class TodoResolver {
         return this.todoService.createTodo(data);
     }
 
-    @Mutation()
-    async deleteTodo(@Args('id') id: string) {
-        return this.todoService.remove(id);
-    }
+    // @Mutation()
+    // async deleteTodo(@Args('id') id: string) {
+    //     await this.todoService.remove(id);
+    // }
 
-    @Mutation(() => CreateTodoDto) 
-    async dateCompleted(@Args('id', 'data') id: string, data: DateCompletedTodo) {
-        return this.todoService.addDateCompleted(id, data)
-    }
+    // @Mutation(() => CreateTodoDto) 
+    // async dateCompleted(@Args('id', 'data') id: string, data: DateCompletedTodo) {
+    //     return this.todoService.addDateCompleted(id, data)
+    // }
     
 }

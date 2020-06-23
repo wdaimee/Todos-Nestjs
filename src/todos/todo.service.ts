@@ -25,9 +25,9 @@ export class TodoService {
         return this.todoRepository.findOne(id)
     } 
 
-    async remove(id: string): Promise<void> {
-        await this.todoRepository.delete(id)
-    }
+    // async remove(id: string): Promise<void> {
+    //     await this.todoRepository.delete(id)
+    // }
 
     // Need to make sure FK to logged in user is added in
     async createTodo(data: CreateTodoDto): Promise<Todo> {
@@ -43,13 +43,13 @@ export class TodoService {
         return todo;
     }
 
-    async addDateCompleted(id: string, data: AddDateCompletedTodo): Promise<Todo> {
-        const todo = this.todoRepository.findOne(id);
-        todo.dateCompleted = data.dateCompleted;
-        todo.status = 'complete';
+    // async addDateCompleted(id: string, data: AddDateCompletedTodo): Promise<Todo> {
+    //     const todo = this.todoRepository.findOne(id);
+    //     todo.dateCompleted = data.dateCompleted;
+    //     todo.status = 'complete';
 
-        await this.todoRepository.save(todo);
+    //     await this.todoRepository.save(todo);
 
-        return todo;
-    }
+    //     return todo;
+    // }
 }

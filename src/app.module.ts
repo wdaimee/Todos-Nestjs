@@ -6,6 +6,7 @@ import { join } from 'path';
 import { UserModule } from './user/user.module';
 import { TodoModule } from './todos/todo.module';
 import { configService } from './config/config.service';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -15,7 +16,8 @@ import { configService } from './config/config.service';
     }),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     UserModule,
-    TodoModule
+    TodoModule,
+    AuthModule
   ],
 })
 
