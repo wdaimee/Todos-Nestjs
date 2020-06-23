@@ -3,6 +3,9 @@ import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
 import { InputUser } from './input/user.input';
+import { CurrentUser } from './CurrentUser.decorator';
+import { GqlAuthGuard } from '../auth/local-auth-guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -16,6 +19,12 @@ export class UserResolver {
     @Query(() => CreateUserDto)
     async user(@Args('username') username: string) {
         return this.userService.findOne(username);
+    }
+
+    @Query(() => User)
+    @UseGuards(GqlAuthGuard)
+    me(@CurrentUser() user: User) {
+        return user;
     }
 
     @Mutation(() => CreateUserDto)
