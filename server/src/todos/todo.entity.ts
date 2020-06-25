@@ -12,6 +12,9 @@ export class Todo {
     @Column('varchar', {length: 500, unique: true})
     body: string;
 
+    @CreateDateColumn({type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
+    dateCreated: Date;
+
     @CreateDateColumn({type: 'date'})
     dueDate: Date;
 

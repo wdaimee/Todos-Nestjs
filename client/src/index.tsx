@@ -3,12 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+
+let client: ApolloClient<any>;
+
+client = new ApolloClient({
+  uri: 'http://localhost:3000/graphql'
+});
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
+  </ApolloProvider>
+    
+  
   document.getElementById('root')
 );
 
