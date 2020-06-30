@@ -5,31 +5,32 @@ import { Todo } from './todo.entity';
 import { CreateTodoDto, AddDateCompletedTodo } from './dto/create-todo.dto';
 
 
-//TODO User Authentication and use logged in user to find all the services bellow
+// TODO User Authentication and use logged in user to find all the services bellow
 @Injectable()
 export class TodoService {
     constructor(@InjectRepository(Todo) 
     private todoRepository: Repository<Todo>, 
     ) {}
 
-    //Find all Todos that belong to a user
+    // Find all Todos that belong to a user
     findAll(): Promise<Todo[]> {
         return this.todoRepository.find({})
     }
 
-    //Get all Todos for a user that are currently open
+    // Get all Todos for a user that are currently open
     allOpen(): Promise<Todo[]> {
         return this.todoRepository.find({status: 'open'})
     }
 
-    //Get a specific user for a todo
+    // Get a specific user for a todo
     findOne(id: string): Promise<Todo> {
         return this.todoRepository.findOne(id)
     } 
 
-    // async remove(id: string): Promise<void> {
-    //     await this.todoRepository.delete(id)
-    // }
+    // Delete a specific Todo
+    async remove(id: string): Promise<void> {
+        await this.todoRepository.delete(id)
+    }
 
     // Need to make sure FK to logged in user is added in
     async createTodo(data: CreateTodoDto): Promise<Todo> {
@@ -45,13 +46,14 @@ export class TodoService {
         return todo;
     }
 
-    // async addDateCompleted(id: string, data: AddDateCompletedTodo): Promise<Todo> {
-    //     const todo = this.todoRepository.findOne(id);
-    //     todo.dateCompleted = data.dateCompleted;
-    //     todo.status = 'complete';
+    // Add completed date to Todo
+    async addDateCompleted(id: string, data: AddDateCompletedTodo): Promise<Todo> {
+        const todo = await this.todoRepository.findOne(id);
+        todo.dateCompleted = data.dateCompleted;
+        todo.status = 'complete';
 
-    //     await this.todoRepository.save(todo);
+        await this.todoRepository.save(todo);
 
-    //     return todo;
-    // }
+        return todo;
+    }
 }
