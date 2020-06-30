@@ -5,9 +5,9 @@ export class InputTodo {
     @Field() readonly title: string;
     @Field() readonly body: string;
     @Field() readonly dueDate: Date;
-    @Field() readonly dateCompleted?: Date;
-    @Field() readonly status?: string;
-    @Field() readonly dateCreated?: Date;
+    @Field({ nullable: true }) readonly dateCompleted?: Date;
+    @Field({ nullable: true }) readonly status?: string;
+    @Field({ nullable: true }) readonly dateCreated?: Date;
 }
 
 @InputType()

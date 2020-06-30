@@ -29,11 +29,6 @@ export class TodoResolver {
         return this.todoService.createTodo(data);
     }
 
-    @Mutation()
-    async deleteTodo(@Args('id') id: string) {
-        await this.todoService.remove(id);
-    }
-
     @Mutation(() => CreateTodoDto) 
     async dateCompleted(
         @Args('id') id: string,
@@ -42,4 +37,8 @@ export class TodoResolver {
         return this.todoService.addDateCompleted(id, data)
     }
     
+    @Mutation(returns => CreateTodoDto)
+    async deleteTodo(@Args('id') id: string) {
+        await this.todoService.remove(id);
+    }
 }

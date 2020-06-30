@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Todo } from './todo.entity';
-import { CreateTodoDto, AddDateCompletedTodo } from './dto/create-todo.dto';
+import { InputTodo, DateCompletedTodo } from './input/todo.input';
 
 
 // TODO User Authentication and use logged in user to find all the services bellow
@@ -33,7 +33,7 @@ export class TodoService {
     }
 
     // Need to make sure FK to logged in user is added in
-    async createTodo(data: CreateTodoDto): Promise<Todo> {
+    async createTodo(data: InputTodo): Promise<Todo> {
         const todo = new Todo();
         todo.title = data.title;
         todo.body = data.body;
@@ -47,7 +47,7 @@ export class TodoService {
     }
 
     // Add completed date to Todo
-    async addDateCompleted(id: string, data: AddDateCompletedTodo): Promise<Todo> {
+    async addDateCompleted(id: string, data: DateCompletedTodo): Promise<Todo> {
         const todo = await this.todoRepository.findOne(id);
         todo.dateCompleted = data.dateCompleted;
         todo.status = 'complete';
