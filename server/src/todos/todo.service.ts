@@ -17,10 +17,12 @@ export class TodoService {
         return this.todoRepository.find({})
     }
 
+    //Get all Todos for a user that are currently open
     allOpen(): Promise<Todo[]> {
         return this.todoRepository.find({status: 'open'})
     }
 
+    //Get a specific user for a todo
     findOne(id: string): Promise<Todo> {
         return this.todoRepository.findOne(id)
     } 

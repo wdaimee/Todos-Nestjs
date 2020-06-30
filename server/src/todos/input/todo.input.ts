@@ -7,6 +7,7 @@ export class InputTodo {
     @Field() readonly dueDate: Date;
     @Field() readonly dateCompleted?: Date;
     @Field() readonly status?: string;
+    @Field() readonly dateCreated?: Date;
 }
 
 @InputType()

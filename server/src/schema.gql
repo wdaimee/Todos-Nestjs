@@ -6,6 +6,7 @@ type CreateTodoDto {
   id: String!
   title: String!
   body: String!
+  dateCreated: DateTime!
   dueDate: DateTime!
   dateCompleted: DateTime!
   status: String!
@@ -31,6 +32,7 @@ input InputTodo {
   dueDate: DateTime!
   dateCompleted: DateTime!
   status: String!
+  dateCreated: DateTime!
 }
 
 input InputUser {
