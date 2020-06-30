@@ -6,8 +6,8 @@ export class CreateTodoDto {
     @Field() readonly title: string;
     @Field() readonly body: string;
     @Field() readonly dateCreated?: Date;
-    @Field() readonly dueDate: Date;
-    @Field() readonly dateCompleted?: Date;
+    @Field() readonly dueDate: string;
+    @Field({ nullable: true }) readonly dateCompleted?: string;
     @Field() readonly status?: string;
 }
 

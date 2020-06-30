@@ -37,8 +37,18 @@ export class TodoResolver {
         return this.todoService.addDateCompleted(id, data)
     }
     
+    // Works but need to respond back with deleted Todo or success message
     @Mutation(returns => CreateTodoDto)
     async deleteTodo(@Args('id') id: string) {
         await this.todoService.remove(id);
+    }
+
+    // Add update Todo
+    @Mutation(() => CreateTodoDto)
+    async updateTodo(
+        @Args('id') id: string,
+        @Args('data') data: InputTodo
+    ) {
+        await this.todoService.update(id, data);
     }
 }

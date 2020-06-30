@@ -7,8 +7,8 @@ type CreateTodoDto {
   title: String!
   body: String!
   dateCreated: DateTime!
-  dueDate: DateTime!
-  dateCompleted: DateTime!
+  dueDate: String!
+  dateCompleted: String
   status: String!
 }
 
@@ -22,7 +22,7 @@ type CreateUserDto {
 }
 
 input DateCompletedTodo {
-  dateCompleted: DateTime!
+  dateCompleted: String!
 }
 
 """
@@ -33,8 +33,8 @@ scalar DateTime
 input InputTodo {
   title: String!
   body: String!
-  dueDate: DateTime!
-  dateCompleted: DateTime
+  dueDate: String!
+  dateCompleted: String
   status: String
   dateCreated: DateTime
 }
@@ -52,6 +52,7 @@ type Mutation {
   createTodo(data: InputTodo!): CreateTodoDto!
   dateCompleted(data: DateCompletedTodo!, id: String!): CreateTodoDto!
   deleteTodo(id: String!): CreateTodoDto!
+  updateTodo(data: InputTodo!, id: String!): CreateTodoDto!
 }
 
 type Query {

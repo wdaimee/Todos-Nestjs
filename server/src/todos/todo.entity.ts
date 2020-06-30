@@ -15,11 +15,11 @@ export class Todo {
     @CreateDateColumn({type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
     dateCreated: Date;
 
-    @CreateDateColumn({type: 'date'})
-    dueDate: Date;
+    @Column()
+    dueDate: string;
 
-    @CreateDateColumn({type: 'date'})
-    dateCompleted: Date;
+    @Column({ nullable: true })
+    dateCompleted: string;
 
     @Column('varchar', {length: 100})
     status: string;

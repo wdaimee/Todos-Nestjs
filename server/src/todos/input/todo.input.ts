@@ -4,13 +4,13 @@ import { Field, InputType } from '@nestjs/graphql';
 export class InputTodo {
     @Field() readonly title: string;
     @Field() readonly body: string;
-    @Field() readonly dueDate: Date;
-    @Field({ nullable: true }) readonly dateCompleted?: Date;
+    @Field() readonly dueDate: string;
+    @Field({ nullable: true }) readonly dateCompleted?: string;
     @Field({ nullable: true }) readonly status?: string;
     @Field({ nullable: true }) readonly dateCreated?: Date;
 }
 
 @InputType()
 export class DateCompletedTodo {
-    @Field() readonly dateCompleted: Date;
+    @Field() readonly dateCompleted: string;
 }

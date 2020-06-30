@@ -25,6 +25,12 @@ export class UserService {
     }
 
     async createUser(data: CreateUserDto): Promise<User> {
+        const foundUserEmail = await this.userRepository.findOne({ email: data.email});
+        const foundUsername = await this.userRepository.findOne({ username: data.username});
+
+        if (foundUserEmail) throw new Error("Email has already been taken");
+        if (foundUsername) throw new Error("This username has already been taken")
+
         const user = new User();
         user.username = data.username;
         user.email = data.email;
