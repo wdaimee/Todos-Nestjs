@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Paragraph = styled.p`
-    color: #EEF4ED;
+    color: ${({ theme }) => theme.colors.mintCream};
     font-size: 15px;
 `
 
 const Div = styled.div`
-    background-color: #134074;
+    background-color: ${({ theme }) => theme.colors.black};
     display: flex;
     flex-direction: column;
     justify-content: center;

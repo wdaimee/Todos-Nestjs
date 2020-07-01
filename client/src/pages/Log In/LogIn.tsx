@@ -1,11 +1,21 @@
 import React from 'react';
-import styles from './LogIn.module.css';
+import styled from 'styled-components';
 import Footer from '../../components/Footer/Footer';
 
+const LoginPageDiv = styled.div`
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10fr 1fr;
+    justify-content: center;
+`
+
 const LoginPage: React.FC<any> = () => 
-    <div className={styles.login_page}>
-        <h1>Login Page</h1>
-        <Footer />
-    </div>    
+    <>
+        <LoginPageDiv>
+            <h1>Login Page</h1>
+            <Footer />
+        </LoginPageDiv>
+    </>
 
 export default LoginPage;
