@@ -9,7 +9,8 @@ declare module 'styled-components' {
             cadetGrey: string,
             mintCream: string,
             black: string,
-            white: string
+            white: string,
+            success: string
         }
     }
 }
@@ -22,6 +23,7 @@ export const theme: DefaultTheme = {
         cadetGrey: '#8DA9C4',
         mintCream: '#EEF4ED',
         black: '#000',
-        white: '#000'
+        white: '#000',
+        success: '#20BF55'
     }
 }
