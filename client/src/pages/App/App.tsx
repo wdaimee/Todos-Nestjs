@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginPage from '../Log In/LogIn';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import './App.css';
 
 function App() {
   return (
