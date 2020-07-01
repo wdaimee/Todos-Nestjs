@@ -23,8 +23,8 @@ export class UserResolver {
 
     @Query(() => CreateUserDto)
     @UseGuards(GqlAuthGuard)
-    me(@CurrentUser() user: User) {
-        return user;
+    async currentLoggedInUser(@CurrentUser() user: User) {
+        return this.userService.findLoggedInUser(user.id);
     }
 
     @Mutation(() => CreateUserDto)

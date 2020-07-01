@@ -4,7 +4,7 @@ import { User } from '../user/user.entity';
 @Entity('todo')
 export class Todo {
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    id: string;
 
     @Column('varchar', {length: 100, unique: true})
     title: string;

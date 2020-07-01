@@ -58,7 +58,7 @@ type Mutation {
 type Query {
   allUsers: [CreateUserDto!]!
   user(username: String!): CreateUserDto!
-  me: CreateUserDto!
+  currentLoggedInUser: CreateUserDto!
   allTodos: [CreateTodoDto!]!
   allOpenTodos: [CreateTodoDto!]!
   todo(id: String!): CreateTodoDto!

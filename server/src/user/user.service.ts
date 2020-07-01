@@ -42,4 +42,9 @@ export class UserService {
 
         return user;
     }
+
+    async findLoggedInUser(id: string): Promise<User> {
+        const currentLoggedInUser = await this.userRepository.findOne({ id });
+        return currentLoggedInUser;
+    }
 }
