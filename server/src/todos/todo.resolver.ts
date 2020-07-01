@@ -49,6 +49,6 @@ export class TodoResolver {
         @Args('id') id: string,
         @Args('data') data: InputTodo
     ) {
-        await this.todoService.update(id, data);
+        return this.todoService.update(id, data);
     }
 }
