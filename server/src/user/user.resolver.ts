@@ -9,14 +9,10 @@ import { CurrentUser } from './CurrentUser.decorator';
 import { GqlAuthGuard } from '../auth/local-auth-guard';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UseGuards, Request } from '@nestjs/common';
-import { AuthService } from '../auth/auth.service';
 
 @Resolver(() => User)
 export class UserResolver {
-    constructor (
-        private readonly userService: UserService, 
-        private readonly authService: AuthService,
-    ) {}
+    constructor (private readonly userService: UserService) {}
 
     @Query(() => [ CreateUserDto ])
     async allUsers() {
@@ -37,22 +33,5 @@ export class UserResolver {
     @Mutation(() => CreateUserDto)
     async createUser(@Args('data') data: InputUser) {
         return this.userService.createUser(data);
-    }
-
-    @Mutation(() => LoginOutput)
-    async login(@Args('data') data: InputLogin) {
-        const user = await this.authService.validateUser(data.username, data.password);
-        if (!user) throw new Error('Invalid Login Credentials: Username does not exist');
-        return this.authService.login(user);
-    }
-
-    @Query(() => Boolean)
-    async verifyToken(@Args('accessToken') token: string) {
-        try {
-            this.authService.verify(token);
-            return true;
-        } catch (e) {
-            return false
-        }
     }
 }

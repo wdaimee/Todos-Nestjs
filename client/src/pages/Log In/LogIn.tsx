@@ -57,23 +57,26 @@ const Label = styled.label`
     text-align: start;
 `
 
-const LoginPage: React.FC<any> = (props) => (
-    <>
-        <LoginPageDiv>
-            <MainContentDiv>
-                <Header>Login Page</Header>
-                <Paragraph>Don't have an account? Create an Account</Paragraph>
-                <div>
-                    <Label>Username:</Label>
-                    <Input type="text" />
-                    <Label>Password:</Label>
-                    <Input type="text" />
-                    <Button color="success">Log In</Button>
-                </div>
-            </MainContentDiv>
-            <Footer />
-        </LoginPageDiv>
-    </>
-);
+const LoginPage: React.FC<any> = (props) => {
+    
+    return(
+        <>
+            <LoginPageDiv>
+                <MainContentDiv>
+                    <Header>Login Page</Header>
+                    <Paragraph>Don't have an account? Create an Account</Paragraph>
+                    <div>
+                        <Label>Username:</Label>
+                        <Input name="username" type="text" />
+                        <Label>Password:</Label>
+                        <Input name="password" type="text" />
+                        <Button color="success">Log In</Button>
+                    </div>
+                </MainContentDiv>
+                <Footer />
+            </LoginPageDiv>
+        </>
+    )
+};
 
 export default LoginPage;
