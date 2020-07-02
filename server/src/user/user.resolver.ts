@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
 import { InputUser } from './input/user.input';
 import { InputLogin } from './input/login.input';
+import { LoginOutput } from './output/login.output';
 import { CurrentUser } from './CurrentUser.decorator';
 import { GqlAuthGuard } from '../auth/local-auth-guard';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -39,10 +40,19 @@ export class UserResolver {
     }
 
     @Mutation(() => LoginOutput)
-    @UseGuards(GqlAuthGuard)
-    async login(@Request() req) {
-        return this.authService.login(req.user);
-        
+    async login(@Args('data') data: InputLogin) {
+        const user = await this.authService.validateUser(data.username, data.password);
+        if (!user) throw new Error('Invalid Login Credentials: Username does not exist');
+        return this.authService.login(user);
     }
-    
+
+    @Query(() => Boolean)
+    async verifyToken(@Args('accessToken') token: string) {
+        try {
+            this.authService.verify(token);
+            return true;
+        } catch (e) {
+            return false
+        }
+    }
 }
