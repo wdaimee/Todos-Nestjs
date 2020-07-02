@@ -3,6 +3,7 @@ import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
 import { InputUser } from './input/user.input';
+import { InputLogin } from './input/login.input';
 import { CurrentUser } from './CurrentUser.decorator';
 import { GqlAuthGuard } from '../auth/local-auth-guard';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -13,7 +14,7 @@ import { AuthService } from '../auth/auth.service';
 export class UserResolver {
     constructor (
         private readonly userService: UserService, 
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
     ) {}
 
     @Query(() => [ CreateUserDto ])
@@ -37,9 +38,11 @@ export class UserResolver {
         return this.userService.createUser(data);
     }
 
-    @Mutation()
+    @Mutation(() => LoginOutput)
     @UseGuards(GqlAuthGuard)
     async login(@Request() req) {
         return this.authService.login(req.user);
+        
     }
+    
 }

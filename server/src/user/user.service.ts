@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
@@ -39,6 +40,8 @@ export class UserService {
         user.lastName = data.lastName;
 
         await this.userRepository.save(user);
+
+        
 
         return user;
     }
