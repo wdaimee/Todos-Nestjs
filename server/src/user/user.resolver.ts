@@ -5,11 +5,16 @@ import { UserService } from './user.service';
 import { InputUser } from './input/user.input';
 import { CurrentUser } from './CurrentUser.decorator';
 import { GqlAuthGuard } from '../auth/local-auth-guard';
-import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { UseGuards, Request } from '@nestjs/common';
+import { AuthService } from '../auth/auth.service';
 
 @Resolver(() => User)
 export class UserResolver {
-    constructor (private readonly userService: UserService) {}
+    constructor (
+        private readonly userService: UserService, 
+        private readonly authService: AuthService
+    ) {}
 
     @Query(() => [ CreateUserDto ])
     async allUsers() {
@@ -22,7 +27,7 @@ export class UserResolver {
     }
 
     @Query(() => CreateUserDto)
-    @UseGuards(GqlAuthGuard)
+    @UseGuards(JwtAuthGuard)
     async currentLoggedInUser(@CurrentUser() user: User) {
         return this.userService.findLoggedInUser(user.id);
     }
@@ -30,5 +35,11 @@ export class UserResolver {
     @Mutation(() => CreateUserDto)
     async createUser(@Args('data') data: InputUser) {
         return this.userService.createUser(data);
+    }
+
+    @Mutation()
+    @UseGuards(GqlAuthGuard)
+    async login(@Request() req) {
+        return this.authService.login(req.user);
     }
 }
