@@ -19,31 +19,42 @@ const MainContentDiv = styled.div`
 `
 
 const Header = styled.h1`
-    font-size: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.6rem;
     color: ${({ theme }) => theme.colors.mintCream};
 `;
 
 const Paragraph = styled.p`
-    font-size: 1rem;
+    font-size: 0.8rem;
+    line-height: 12px;
     color: ${({ theme }) => theme.colors.mintCream};
     display: inline;
 `;
 
 const Input = styled.input`
     padding: 0.5rem;
-    margin: 0.5rem;
+    margin: 0.5rem 0;
     color: ${({ theme }) => theme.colors.black};
     background: ${({ theme }) => theme.colors.mintCream};
     border: none;
-    width: 50%;
+    width: 100%;
+    box-sizing: border-box;
 `
 
 const Button = styled.button`
-    background-color: ${(props) => props.theme.colors[props.color]};
+    background-color: ${(props) => props.theme.colors.success};
     border: none;
     color: ${({ theme }) => theme.colors.mintCream};
-    width: 50%;
+    width: 100%;
     font-size: 1rem;
+    height: 25px;
+`
+
+const Label = styled.label`
+    color: ${({ theme }) => theme.colors.mintCream};
+    font-size: 1.3rem;
+    display: block;
+    text-align: start;
 `
 
 const LoginPage: React.FC<any> = (props) => (
@@ -51,11 +62,14 @@ const LoginPage: React.FC<any> = (props) => (
         <LoginPageDiv>
             <MainContentDiv>
                 <Header>Login Page</Header>
-                <Paragraph>Don't have an account? </Paragraph>
-                <Paragraph>Create an Account</Paragraph>
-                <Input defaultValue='Username' type="text" />
-                <Input defaultValue='Password' type="text" />
-                <Button color='success'>Log In</Button>
+                <Paragraph>Don't have an account? Create an Account</Paragraph>
+                <div>
+                    <Label>Username:</Label>
+                    <Input type="text" />
+                    <Label>Password:</Label>
+                    <Input type="text" />
+                    <Button color="success">Log In</Button>
+                </div>
             </MainContentDiv>
             <Footer />
         </LoginPageDiv>
