@@ -1,5 +1,4 @@
-import React, { useState, HTMLAttributes } from 'react';
-import Footer from '../../components/Footer/Footer';
+import React, { useState } from 'react';
 import { LoginPageDiv, MainContentDiv, Paragraph, Label, Input, Header, CenteredDiv } from './Login.styles';
 import { LoginButton } from '../../ui/Login Button/LoginButton';
 
@@ -43,7 +42,6 @@ const LoginPage: React.FC<any> = (props) => {
                         <LoginButton color="cadetGrey">Log In as Guest</LoginButton>
                     </CenteredDiv>
                 </MainContentDiv>
-                <Footer />
             </LoginPageDiv>
         </>
     )

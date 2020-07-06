@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginPage from '../Log In/LogIn';
+import Footer from '../../components/Footer/Footer';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
           </div>
         } />
       </Switch>
+      <Footer />
     </div>
   );
 }

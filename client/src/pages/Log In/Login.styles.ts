@@ -3,11 +3,10 @@ import { theme } from '../../css/theme';
 import { Button } from '../../ui/Button/Button';
 
 export const LoginPageDiv = styled.div`
-    height: 100vh;
     background-color: ${theme.colors.indigo};
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10fr 1fr;
+    grid-template-rows: 1fr;
     justify-content: center;
 `;
 
