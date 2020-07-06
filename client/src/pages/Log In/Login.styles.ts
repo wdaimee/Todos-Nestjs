@@ -8,6 +8,9 @@ export const LoginPageDiv = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     justify-content: center;
+    @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+    }
 `;
 
 export const MainContentDiv = styled.div`
@@ -60,5 +63,13 @@ export const CenteredDiv = styled.div`
     align-items: center;
 `;
 
-
+export const BackgroundAsideDiv = styled.div`
+    display: none;
+    @media (min-width: 768px) {
+        display: inline;
+        background: url("https://i.imgur.com/wR8DzvN.jpg");
+        background-size: cover;
+        grid-column-start: 2;
+    }
+`;
 

@@ -4,5 +4,5 @@
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10fr 1fr;
+  grid-template-rows: 15fr 1fr;
 }
