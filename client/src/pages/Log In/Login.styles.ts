@@ -50,11 +50,6 @@ export const Label = styled.label`
     right: 67px;
 `;
 
-export const StyledButton = styled(Button)`
-    width: 100%;
-    background-color: black;
-`;
-
 export const CenteredDiv = styled.div`
     height: 420px;
     display: flex;
