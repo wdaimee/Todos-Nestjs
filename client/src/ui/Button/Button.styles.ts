@@ -7,7 +7,7 @@ export const StyledButton = styled.button<ButtonProps>`
     border: none;
     color: ${theme.colors.mintCream};
     font-size: 1rem;
-    height: 30px;
+    height: 1.9rem;
     box-sizing: border-box;
     cursor: pointer;
     &:hover {
@@ -19,7 +19,7 @@ export const StyledButton = styled.button<ButtonProps>`
         color: ${({ color }) => theme.colors[color]};
         background-color: ${theme.colors.mintCream};
         font-weight: bold;
-        transform: translateY(4px);
+        transform: translateY(0.25rem);
     }
     &:focus {
         outline: none;

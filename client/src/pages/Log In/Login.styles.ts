@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '../../css/theme';
-import { Button } from '../../ui/Button/Button';
 
 export const LoginPageDiv = styled.div`
     background-color: ${theme.colors.indigo};
@@ -38,8 +37,11 @@ export const Input = styled.input`
     color: ${theme.colors.black};
     background: ${theme.colors.mintCream};
     border: none;
-    width: 224px;
+    width: 14rem;
     box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
 `;
 
 export const Label = styled.label`
@@ -47,11 +49,11 @@ export const Label = styled.label`
     font-size: 1.3rem;
     display: block;
     position: relative;
-    right: 67px;
+    right: 4.1rem;
 `;
 
 export const CenteredDiv = styled.div`
-    height: 420px;
+    height: 26.3rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

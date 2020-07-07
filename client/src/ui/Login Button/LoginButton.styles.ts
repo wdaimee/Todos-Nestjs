@@ -2,5 +2,5 @@ import styled from 'styled-components';
 import { StyledButton } from '../Button/Button.styles';
 
 export const StyledLoginButton = styled(StyledButton)`
-    width: 224px;
+    width: 14rem;
 `;
