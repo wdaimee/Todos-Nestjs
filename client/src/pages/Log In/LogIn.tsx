@@ -7,7 +7,7 @@ import { LoginPageDiv,
          CenteredDiv, 
          BackgroundAsideDiv 
         } from './Login.styles';
-import { LoginButton } from '../../ui/Login Button/LoginButton';
+import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
 
 const LoginPage: React.FC<any> = (props) => {
     const [state, setState] = useState({
@@ -31,18 +31,18 @@ const LoginPage: React.FC<any> = (props) => {
                         <div style={{position: "relative", bottom: "30px"}}>
                             <Paragraph>Don't have an account? Create an Account</Paragraph>
                         </div>
-                            <div style={{height: "150px", 
-                                         position: "relative",
-                                         bottom: "20px",
-                                         display: "flex",
-                                         flexDirection: "column",
-                                         justifyContent: "space-between"}}>
-                                <Label>Username:</Label>
-                                <Input value={state.username} name="username" type="text" onChange={handleChange}/>
-                                <Label>Password:</Label>
-                                <Input value={state.password} name="password" type="password" onChange={handleChange}/>
-                            </div>
-                            <LoginButton color="success">Log In</LoginButton>
+                        <div style={{height: "150px", 
+                                    position: "relative",
+                                    bottom: "20px",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "space-between"}}>
+                        <Label>Username:</Label>
+                        <Input value={state.username} name="username" type="text" onChange={handleChange}/>
+                        <Label>Password:</Label>
+                        <Input value={state.password} name="password" type="password" onChange={handleChange}/>
+                        </div>
+                        <LoginButton color="success">Log In</LoginButton>
                         <div style={{position: "relative", top: "10px"}}>
                             <Paragraph>Just want to checkout how things work? Log in as a guest</Paragraph>
                         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginPage from '../Log In/LogIn';
+import SignUpPage from '../Sign Up/SignUp';
 import Footer from '../../components/Footer/Footer';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
@@ -8,8 +9,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path='/login' render={() => 
+        <Route exact path="/login" render={() => 
           <LoginPage />
+        } />
+        <Route exact path="/signup" render={() => 
+          <SignUpPage />
         } />
         <Route path="/*" render={() => 
           <div className="error">
