@@ -4,7 +4,6 @@ import { SignUpMainDiv,
          SignUpBackground, 
          SignUpCentered, 
          SignUpLabel, 
-         SignUpButton 
         } from './SignUp.styles';
 
 const SignUpPage: React.FC<any> = (props) => {

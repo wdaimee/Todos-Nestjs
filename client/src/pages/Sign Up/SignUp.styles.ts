@@ -29,8 +29,3 @@ export const SignUpLabel = styled(Label)`
     right: 0;
     text-align: start;
 `;
-
-export const SignUpButton = styled(LoginButton)`
-    position: relative;
-    top: 10px;
-`;
