@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { findEnv } from '../../find-env';
 
-require('dotenv').config();
+require('dotenv').config({ path: findEnv() });
 
 class ConfigService {
     constructor(private env: { [k: string]: string | undefined }) { }

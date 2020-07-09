@@ -10,7 +10,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './css/theme';
 
 const client = new ApolloClient({
-  uri: process.env.GRAPHQL_ENDPOINT
+  uri: 'localhost:3001/graphql'
 });
 
 ReactDOM.render(

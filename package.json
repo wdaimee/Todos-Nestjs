@@ -1,0 +1,24 @@
+{
+  "name": "todos",
+  "version": "1.0.0",
+  "description": "## About:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdaimee/Todos-Nestjs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wdaimee/Todos-Nestjs/issues"
+  },
+  "homepage": "https://github.com/wdaimee/Todos-Nestjs#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "find-up": "^4.1.0"
+  }
+}
