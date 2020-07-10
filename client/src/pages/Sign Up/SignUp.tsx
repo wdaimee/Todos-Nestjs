@@ -7,6 +7,30 @@ import { SignUpMainDiv,
         } from './SignUp.styles';
 import { SignUpButton } from '../../ui/Buttons/SignUp Button/SignUpButton';
 import { StyledLink } from '../../ui/Link/Link.styles';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+
+const signUp = gql`
+    mutation SignUp(
+                        $username: String!, 
+                        $email: String!, 
+                        $password: String!, 
+                        firstName: String!,
+                        lastName: String!
+                    ) {
+                        createUser(
+                                    username: $username, 
+                                    email: $email, 
+                                    password: $password,
+                                    firstName: $firstName,
+                                    lastName: $lastName
+                                  ) {
+                                      id
+                                      username
+                                      email
+                                  }
+                    }
+`;
 
 const SignUpPage: React.FC<any> = (props) => {
     const [state, setState] = useState({
@@ -17,12 +41,14 @@ const SignUpPage: React.FC<any> = (props) => {
         lastName: "",
     });
 
+    const [createUser, {data}] = useMutation(signUp);
+
     const handleChange = (e: any) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
         });
-    }
+    };
 
     return(
         <>
@@ -49,7 +75,7 @@ const SignUpPage: React.FC<any> = (props) => {
                             <Input value={state.firstName} name="firstName" type="text" onChange={handleChange}/>
                             <SignUpLabel>Last Name:</SignUpLabel>
                             <Input value={state.lastName} name="lastName" type="text" onChange={handleChange}/>
-                            <SignUpButton color="success">Sign Up</SignUpButton>
+                            <SignUpButton color="success" onClick={handleSubmit}>Sign Up</SignUpButton>
                         </div>
                     </SignUpCentered>
                 </SignUpMainDiv>

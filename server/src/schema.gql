@@ -30,6 +30,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input InputLogin {
+  username: String!
+  password: String!
+}
+
 input InputTodo {
   title: String
   body: String
@@ -47,12 +52,17 @@ input InputUser {
   lastName: String!
 }
 
+type LoginOutput {
+  accessToken: String!
+}
+
 type Mutation {
   createUser(data: InputUser!): CreateUserDto!
   createTodo(data: InputTodo!): CreateTodoDto!
   dateCompleted(data: DateCompletedTodo!, id: String!): CreateTodoDto!
   deleteTodo(id: String!): CreateTodoDto!
   updateTodo(data: InputTodo!, id: String!): CreateTodoDto!
+  login(data: InputLogin!): LoginOutput!
 }
 
 type Query {
@@ -62,4 +72,5 @@ type Query {
   allTodos: [CreateTodoDto!]!
   allOpenTodos: [CreateTodoDto!]!
   todo(id: String!): CreateTodoDto!
+  verifyToken(accessToken: String!): Boolean!
 }

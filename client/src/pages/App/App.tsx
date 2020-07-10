@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginPage from '../Log In/LogIn';
 import SignUpPage from '../Sign Up/SignUp';
 import Footer from '../../components/Footer/Footer';
@@ -6,14 +6,19 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 function App() {
+  // Check to see if there is a logged in user
+  const [user, setUser] = useState('');
+
+  // Use effect for GraphQL query to check if a user is logged in
+
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/login" render={() => 
-          <LoginPage />
+        <Route exact path="/login" render={({ history }) => 
+          <LoginPage history={history}/>
         } />
-        <Route exact path="/signup" render={() => 
-          <SignUpPage />
+        <Route exact path="/signup" render={({ history }) => 
+          <SignUpPage history={history}/>
         } />
         <Route path="/*" render={() => 
           <div className="error">
