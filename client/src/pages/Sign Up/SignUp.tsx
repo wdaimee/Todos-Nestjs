@@ -6,6 +6,7 @@ import { SignUpMainDiv,
          SignUpLabel, 
         } from './SignUp.styles';
 import { SignUpButton } from '../../ui/Buttons/SignUp Button/SignUpButton';
+import { StyledLink } from '../../ui/Link/Link.styles';
 
 const SignUpPage: React.FC<any> = (props) => {
     const [state, setState] = useState({
@@ -31,7 +32,7 @@ const SignUpPage: React.FC<any> = (props) => {
                     <SignUpCentered>
                         <Header>Sign Up</Header>
                         <div style={{position: "relative", bottom: "10px"}}>
-                            <Paragraph>Already have an account? Click here to log in</Paragraph>
+                            <Paragraph>Already have an account? <StyledLink to="/login">Click here to log in</StyledLink></Paragraph>
                         </div>
                         <div style={{height: "440px", 
                                         position: "relative",

@@ -8,6 +8,7 @@ import { LoginPageDiv,
          BackgroundAsideDiv 
         } from './Login.styles';
 import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
+import { StyledLink } from '../../ui/Link/Link.styles';
 
 const LoginPage: React.FC<any> = (props) => {
     const [state, setState] = useState({
@@ -29,7 +30,7 @@ const LoginPage: React.FC<any> = (props) => {
                     <CenteredDiv>
                         <Header>Login</Header>
                         <div style={{position: "relative", bottom: "30px"}}>
-                            <Paragraph>Don't have an account? Create an Account</Paragraph>
+                            <Paragraph>Don't have an account? <StyledLink to="/signup">Create an Account</StyledLink></Paragraph>
                         </div>
                         <div style={{height: "150px", 
                                     position: "relative",
