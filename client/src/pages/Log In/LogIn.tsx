@@ -9,6 +9,15 @@ import { LoginPageDiv,
         } from './Login.styles';
 import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
 import { StyledLink } from '../../ui/Link/Link.styles';
+import gql from 'graphql-tag';
+
+const loginMutation = gql`
+    mutation($username: String!, $password: String!) {
+        login(data: {username: $username, password: $passwrod}) {
+            accessToken
+        }
+    }
+`;
 
 const LoginPage: React.FC<any> = (props) => {
     const [state, setState] = useState({
