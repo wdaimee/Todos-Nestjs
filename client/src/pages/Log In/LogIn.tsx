@@ -10,14 +10,16 @@ import { LoginPageDiv,
 import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
 import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { saveToken } from '../../localStorage';
 
-const loginMutation = gql`
-    mutation($username: String!, $password: String!) {
-        login(data: {username: $username, password: $passwrod}) {
+const [login, { data }] = useMutation(gql`
+    mutation Login($username: String!, $password: String!) {
+        login(username: $username, password: $password) {
             accessToken
         }
     }
-`;
+`);
 
 const LoginPage: React.FC<any> = (props) => {
     const [loginDetails, setLoginDetails] = useState({
