@@ -1,11 +1,11 @@
-const TOKEN_KEY = "stampToken";
+const TOKEN_KEY: string = "stampToken";
 
-export function saveToken(token) {
+export function saveToken(token: string) {
     localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
 };
 
-export function getTokens() {
-    return JSON.parse(localStorage.getItem(TOKEN_KEY));
+export function getToken() {
+    return JSON.parse(localStorage.getItem(TOKEN_KEY) || '{}');
 };
 
 export function deleteToken() {

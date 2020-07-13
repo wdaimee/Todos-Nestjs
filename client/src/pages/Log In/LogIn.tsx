@@ -13,26 +13,36 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { saveToken } from '../../localStorage';
 
-const [login, { data }] = useMutation(gql`
-    mutation Login($username: String!, $password: String!) {
-        login(username: $username, password: $password) {
-            accessToken
-        }
-    }
-`);
-
 const LoginPage: React.FC<any> = (props) => {
     const [loginDetails, setLoginDetails] = useState({
         username: "",
         password: ""
-    })
+    });
+
+    const [login, { data }] = useMutation(gql`
+        mutation Login($username: String!, $password: String!) {
+            login(username: $username, password: $password) {
+                accessToken
+            }
+        }
+    `);
 
     const handleChange = (e: any) => {
         setLoginDetails({
             ...loginDetails,
             [e.target.name]: e.target.value
         });
-    }
+    };
+
+    const handleSubmit = async (e: any) => {
+        console.log('clicked')
+        e.preventDefault();
+        const { data } = await login({ variables: { username: loginDetails.username, password: loginDetails.password } });
+        console.log(data)
+        if (data & data.login) {
+            saveToken(data.login);
+        }
+    };
 
     return(
         <>
@@ -54,7 +64,7 @@ const LoginPage: React.FC<any> = (props) => {
                         <Label>Password:</Label>
                         <Input value={loginDetails.password} name="password" type="password" onChange={handleChange}/>
                         </div>
-                        <LoginButton color="success">Log In</LoginButton>
+                        <LoginButton color="success" onClick={handleSubmit}>Log In</LoginButton>
                         <div style={{position: "relative", top: "10px"}}>
                             <Paragraph>Just want to checkout how things work? Log in as a guest</Paragraph>
                         </div>

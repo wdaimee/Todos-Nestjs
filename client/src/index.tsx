@@ -8,9 +8,20 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './css/theme';
+import { getToken } from './localStorage';
 
 const client = new ApolloClient({
-  uri: 'localhost:3001/graphql'
+  uri: 'localhost:3001/graphql',
+  request: operation => {
+    const token = getToken();
+    if (token && token.accessToken) {
+      operation.setContext({
+        headers: {
+          "x-access-token": token.accessToken
+        }
+      });
+    }
+  }
 });
 
 ReactDOM.render(

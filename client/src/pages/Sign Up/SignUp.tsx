@@ -15,8 +15,8 @@ const signUp = gql`
                         $username: String!, 
                         $email: String!, 
                         $password: String!, 
-                        firstName: String!,
-                        lastName: String!
+                        $firstName: String!,
+                        $lastName: String!
                     ) {
                         createUser(
                                     username: $username, 
@@ -41,7 +41,7 @@ const SignUpPage: React.FC<any> = (props) => {
         lastName: "",
     });
 
-    const [createUser, {data}] = useMutation(signUp);
+    const [createUser, { data }] = useMutation(signUp);
 
     const handleChange = (e: any) => {
         setState({
@@ -75,7 +75,7 @@ const SignUpPage: React.FC<any> = (props) => {
                             <Input value={state.firstName} name="firstName" type="text" onChange={handleChange}/>
                             <SignUpLabel>Last Name:</SignUpLabel>
                             <Input value={state.lastName} name="lastName" type="text" onChange={handleChange}/>
-                            <SignUpButton color="success" onClick={handleSubmit}>Sign Up</SignUpButton>
+                            <SignUpButton color="success">Sign Up</SignUpButton>
                         </div>
                     </SignUpCentered>
                 </SignUpMainDiv>
