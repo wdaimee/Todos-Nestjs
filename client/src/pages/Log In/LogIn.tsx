@@ -11,7 +11,7 @@ import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
 import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { saveToken } from '../../localStorage';
+import { saveToken, getToken } from '../../localStorage';
 
 const LoginPage: React.FC<any> = (props) => {
     const [loginDetails, setLoginDetails] = useState({
@@ -21,7 +21,7 @@ const LoginPage: React.FC<any> = (props) => {
 
     const [login, { data }] = useMutation(gql`
         mutation Login($username: String!, $password: String!) {
-            login(username: $username, password: $password) {
+            login(data: { username: $username, password: $password }) {
                 accessToken
             }
         }
@@ -35,12 +35,12 @@ const LoginPage: React.FC<any> = (props) => {
     };
 
     const handleSubmit = async (e: any) => {
-        console.log('clicked')
         e.preventDefault();
-        const { data } = await login({ variables: { username: loginDetails.username, password: loginDetails.password } });
-        console.log(data)
-        if (data & data.login) {
-            saveToken(data.login);
+        const { data } = await login({ 
+            variables: { username: loginDetails.username, password: loginDetails.password } 
+        });
+        if (data && data.login) {
+            saveToken(data.login.accessToken);
         }
     };
 
