@@ -20,14 +20,14 @@ const loginMutation = gql`
 `;
 
 const LoginPage: React.FC<any> = (props) => {
-    const [state, setState] = useState({
+    const [loginDetails, setLoginDetails] = useState({
         username: "",
         password: ""
     })
 
     const handleChange = (e: any) => {
-        setState({
-            ...state,
+        setLoginDetails({
+            ...loginDetails,
             [e.target.name]: e.target.value
         });
     }
@@ -48,9 +48,9 @@ const LoginPage: React.FC<any> = (props) => {
                                     flexDirection: "column",
                                     justifyContent: "space-between"}}>
                         <Label>Username:</Label>
-                        <Input value={state.username} name="username" type="text" onChange={handleChange}/>
+                        <Input value={loginDetails.username} name="username" type="text" onChange={handleChange}/>
                         <Label>Password:</Label>
-                        <Input value={state.password} name="password" type="password" onChange={handleChange}/>
+                        <Input value={loginDetails.password} name="password" type="password" onChange={handleChange}/>
                         </div>
                         <LoginButton color="success">Log In</LoginButton>
                         <div style={{position: "relative", top: "10px"}}>
