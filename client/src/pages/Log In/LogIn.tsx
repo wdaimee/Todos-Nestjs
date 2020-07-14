@@ -42,38 +42,42 @@ const LoginPage: React.FC<any> = (props) => {
         if (data && data.login) {
             saveToken(data.login.accessToken);
         }
+        // Redirect user to dashboard page
+        props.history.push('/dashboard');
     };
 
     return(
-        <>
-            <LoginPageDiv>
-                <MainContentDiv>
-                    <CenteredDiv>
-                        <Header>Login</Header>
-                        <div style={{position: "relative", bottom: "30px"}}>
-                            <Paragraph>Don't have an account? <StyledLink to="/signup">Create an Account</StyledLink></Paragraph>
-                        </div>
-                        <div style={{height: "150px", 
-                                    position: "relative",
-                                    bottom: "20px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-between"}}>
-                        <Label>Username:</Label>
-                        <Input value={loginDetails.username} name="username" type="text" onChange={handleChange}/>
-                        <Label>Password:</Label>
-                        <Input value={loginDetails.password} name="password" type="password" onChange={handleChange}/>
-                        </div>
-                        <LoginButton color="success" onClick={handleSubmit}>Log In</LoginButton>
-                        <div style={{position: "relative", top: "10px"}}>
-                            <Paragraph>Just want to checkout how things work? Log in as a guest</Paragraph>
-                        </div>
-                        <LoginButton color="cadetGrey">Log In as Guest</LoginButton>
-                    </CenteredDiv>
-                </MainContentDiv>
-                <BackgroundAsideDiv />
-            </LoginPageDiv>
-        </>
+        <LoginPageDiv
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+        >
+            <MainContentDiv>
+                <CenteredDiv>
+                    <Header>Login</Header>
+                    <div style={{position: "relative", bottom: "30px"}}>
+                        <Paragraph>Don't have an account? <StyledLink to="/signup">Create an Account</StyledLink></Paragraph>
+                    </div>
+                    <div style={{height: "150px", 
+                                position: "relative",
+                                bottom: "20px",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between"}}>
+                    <Label>Username:</Label>
+                    <Input value={loginDetails.username} name="username" type="text" onChange={handleChange}/>
+                    <Label>Password:</Label>
+                    <Input value={loginDetails.password} name="password" type="password" onChange={handleChange}/>
+                    </div>
+                    <LoginButton color="success" onClick={handleSubmit}>Log In</LoginButton>
+                    <div style={{position: "relative", top: "10px"}}>
+                        <Paragraph>Just want to checkout how things work? Log in as a guest</Paragraph>
+                    </div>
+                    <LoginButton color="cadetGrey">Log In as Guest</LoginButton>
+                </CenteredDiv>
+            </MainContentDiv>
+            <BackgroundAsideDiv />
+        </LoginPageDiv>
     )
 };
 

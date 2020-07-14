@@ -52,7 +52,11 @@ const SignUpPage: React.FC<any> = (props) => {
 
     return(
         <>
-            <LoginPageDiv>
+            <LoginPageDiv 
+                exit={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+            >
                 <SignUpBackground />
                 <SignUpMainDiv>
                     <SignUpCentered>

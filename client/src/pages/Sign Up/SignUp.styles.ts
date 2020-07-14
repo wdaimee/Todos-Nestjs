@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { theme } from '../../css/theme';
 import { MainContentDiv, BackgroundAsideDiv, CenteredDiv, Label } from '../Log In/Login.styles';
-import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
+
 
 export const SignUpMainDiv = styled(MainContentDiv)`
 @media (min-width: 768px) {

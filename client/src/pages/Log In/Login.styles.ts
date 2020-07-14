@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { theme } from '../../css/theme';
+import { motion } from 'framer-motion';
 
-export const LoginPageDiv = styled.div`
+export const LoginPageDiv = styled(motion.div)`
     background-color: ${theme.colors.indigo};
     display: grid;
     grid-template-columns: 1fr;
