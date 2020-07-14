@@ -47,6 +47,19 @@ const LoginPage: React.FC<any> = (props) => {
         props.history.push('/dashboard');
     };
 
+    // TODO: Create Guest profile
+    const handleLoginGuest = async (e: any) => {
+        e.preventDefault();
+        const { data } = await login({
+            variables: { username: "Guest", password: "p@ssword1" }
+        });
+        if (data && data.login) {
+            saveToken(data.login.accessToken);
+        }
+        // Redirect user to dashboard page
+        props.history.push('/dashboard');
+    }
+
     return(
         <LoginPageDiv
             initial="out"
@@ -75,7 +88,7 @@ const LoginPage: React.FC<any> = (props) => {
                     <div style={{position: "relative", top: "10px"}}>
                         <Paragraph>Just want to checkout how things work? Log in as a guest</Paragraph>
                     </div>
-                    <LoginButton color="cadetGrey">Log In as Guest</LoginButton>
+                    <LoginButton color="cadetGrey" onClick={handleLoginGuest}>Log In as Guest</LoginButton>
                 </CenteredDiv>
             </MainContentDiv>
             <BackgroundAsideDiv />
