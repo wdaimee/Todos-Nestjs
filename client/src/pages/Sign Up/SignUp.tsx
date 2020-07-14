@@ -10,6 +10,15 @@ import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 
+export const pageTransition = {
+    in: {
+        opacity: 1
+    },
+    out: {
+        opacity: 0
+    }
+}
+
 const signUp = gql`
     mutation SignUp(
                         $username: String!, 
@@ -53,9 +62,10 @@ const SignUpPage: React.FC<any> = (props) => {
     return(
         <>
             <LoginPageDiv 
-                exit={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
+                initial="out"
+                animate="in"
+                exit="out"
+                variants={pageTransition}
             >
                 <SignUpBackground />
                 <SignUpMainDiv>

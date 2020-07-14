@@ -12,6 +12,7 @@ import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { saveToken, getToken } from '../../localStorage';
+import { pageTransition } from '../Sign Up/SignUp';
 
 const LoginPage: React.FC<any> = (props) => {
     const [loginDetails, setLoginDetails] = useState({
@@ -48,9 +49,10 @@ const LoginPage: React.FC<any> = (props) => {
 
     return(
         <LoginPageDiv
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
+            initial="out"
+            animate="in"
+            exit="out"
+            variants={pageTransition}
         >
             <MainContentDiv>
                 <CenteredDiv>
