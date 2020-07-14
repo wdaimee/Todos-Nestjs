@@ -47,7 +47,7 @@ const LoginPage: React.FC<any> = (props) => {
         props.history.push('/dashboard');
     };
 
-    // TODO: Create Guest profile
+    // Login function for guests 
     const handleLoginGuest = async (e: any) => {
         e.preventDefault();
         const { data } = await login({
