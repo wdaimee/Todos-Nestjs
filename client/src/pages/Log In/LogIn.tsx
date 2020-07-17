@@ -20,7 +20,7 @@ const LoginPage: React.FC<any> = (props) => {
         password: ""
     });
 
-    const [login, { data }] = useMutation(gql`
+    const [login, { data, error: loginError, loading: loginLoading }] = useMutation(gql`
         mutation Login($username: String!, $password: String!) {
             login(data: { username: $username, password: $password }) {
                 accessToken
