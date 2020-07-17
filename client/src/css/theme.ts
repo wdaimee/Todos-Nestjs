@@ -10,7 +10,8 @@ declare module 'styled-components' {
             mintCream: string,
             black: string,
             white: string,
-            success: string
+            success: string,
+            error: string
         }
     }
 }
@@ -24,6 +25,7 @@ export const theme: DefaultTheme = {
         mintCream: '#EEF4ED',
         black: '#000',
         white: '#000',
-        success: '#20BF55'
+        success: '#20BF55',
+        error: 'red'
     }
 }

@@ -8,8 +8,10 @@ import { LoginPageDiv,
          BackgroundAsideDiv 
         } from './Login.styles';
 import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
+import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
 import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
+import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
 import { saveToken, getToken } from '../../localStorage';
 import { pageTransition } from '../Sign Up/SignUp';
@@ -28,6 +30,8 @@ const LoginPage: React.FC<any> = (props) => {
         }
     `);
 
+    let mutationError = getGQLError(loginError);
+
     const handleChange = (e: any) => {
         setLoginDetails({
             ...loginDetails,
@@ -37,14 +41,18 @@ const LoginPage: React.FC<any> = (props) => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const { data } = await login({ 
-            variables: { username: loginDetails.username, password: loginDetails.password } 
-        });
-        if (data && data.login) {
-            saveToken(data.login.accessToken);
+        try {
+            const { data } = await login({ 
+                variables: { username: loginDetails.username, password: loginDetails.password } 
+            });
+            if (data && data.login) {
+                saveToken(data.login.accessToken);
+            }
+            // Redirect user to dashboard page
+            props.history.push('/dashboard');
+        } catch(e) {
+            return
         }
-        // Redirect user to dashboard page
-        props.history.push('/dashboard');
     };
 
     // Login function for guests 
@@ -68,6 +76,7 @@ const LoginPage: React.FC<any> = (props) => {
             variants={pageTransition}
         >
             <MainContentDiv>
+                {mutationError && <ErrorMessage error={mutationError} />}
                 <CenteredDiv>
                     <Header>Login</Header>
                     <div style={{position: "relative", bottom: "30px"}}>
