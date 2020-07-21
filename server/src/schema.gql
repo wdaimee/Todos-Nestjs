@@ -57,20 +57,20 @@ type LoginOutput {
 }
 
 type Mutation {
-  createUser(data: InputUser!): CreateUserDto!
+  createUser(data: InputUser!): LoginOutput!
+  login(data: InputLogin!): LoginOutput!
   createTodo(data: InputTodo!): CreateTodoDto!
   dateCompleted(data: DateCompletedTodo!, id: String!): CreateTodoDto!
   deleteTodo(id: String!): CreateTodoDto!
   updateTodo(data: InputTodo!, id: String!): CreateTodoDto!
-  login(data: InputLogin!): LoginOutput!
 }
 
 type Query {
   allUsers: [CreateUserDto!]!
   user(username: String!): CreateUserDto!
   currentLoggedInUser: CreateUserDto!
+  verifyToken(accessToken: String!): Boolean!
   allTodos: [CreateTodoDto!]!
   allOpenTodos: [CreateTodoDto!]!
   todo(id: String!): CreateTodoDto!
-  verifyToken(accessToken: String!): Boolean!
 }

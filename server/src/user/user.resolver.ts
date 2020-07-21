@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
+import { AuthService } from '../auth/auth.service'
 import { InputUser } from './input/user.input';
 import { InputLogin } from './input/login.input';
 import { LoginOutput } from './output/login.output';
@@ -12,7 +13,8 @@ import { UseGuards, Request } from '@nestjs/common';
 
 @Resolver(() => User)
 export class UserResolver {
-    constructor (private readonly userService: UserService) {}
+    constructor (private readonly userService: UserService,
+                 private readonly authService: AuthService) {}
 
     @Query(() => [ CreateUserDto ])
     async allUsers() {
@@ -30,8 +32,9 @@ export class UserResolver {
         return this.userService.findLoggedInUser(user.id);
     }
 
-    @Mutation(() => CreateUserDto)
+    @Mutation(() => LoginOutput)
     async createUser(@Args('data') data: InputUser) {
-        return this.userService.createUser(data);
+        const newUser = await this.userService.createUser(data);
+        return this.authService.login(newUser);
     }
 }

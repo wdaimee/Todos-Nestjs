@@ -37,20 +37,9 @@ const signUp = gql`
                                     firstName: $firstName,
                                     lastName: $lastName
                                 }) {
-                                      id
-                                      username
-                                      email
-                                      password
+                                      accessToken
                                   }
                     }
-`;
-
-const loginUser = gql`
-    mutation Login($username: String!, $password: String!) {
-        login(data: { username: $username, password: $password}) {
-            accessToken
-        }
-    }
 `;
 
 const SignUpPage: React.FC<any> = (props) => {
@@ -62,9 +51,7 @@ const SignUpPage: React.FC<any> = (props) => {
         lastName: "",
     });
 
-    const [login, { data, error: loginError, loading: loginLoading }] = useMutation(loginUser);
-
-    const [createUser, { data: createUserData, error: signUpError, loading: signUpLoading }] = useMutation(signUp);
+    const [createUser, { data, error: signUpError, loading: signUpLoading }] = useMutation(signUp);
 
     let signUpMutError = getGQLError(signUpError);
 
@@ -75,34 +62,24 @@ const SignUpPage: React.FC<any> = (props) => {
         });
     };
 
-    const handleLogin = async (username: string, password: string) => {
-        try {
-            const { data } = await login({
-                variables: { username, password }
-            });
-            if (data && data.login) {
-                saveToken(data.login.accessToken);
-            }
-            // Redirect user to dashboard page
-            props.history.push('/dashboard');
-        } catch (e) {
-            return
-        }
-    }
-
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        createUser({
+        try {
+        const { data } = await createUser({
             variables: { username: signUpDetails.username, 
                          email: signUpDetails.email,
                          password: signUpDetails.password,
                          firstName: signUpDetails.firstName,
                          lastName: signUpDetails.lastName
             }
-        })
-        if (createUserData && createUserData.createUser) {
-            const { username, password } = createUserData.createUser;
-            handleLogin(username, password)
+        });
+        if (data && data.createUser) {
+            saveToken(data.createUser.accessToken);
+        }
+        // Redirect user to dashboard page
+        props.history.push('/dashboard');
+        } catch(e) {
+            return
         }
     }
 
