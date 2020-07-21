@@ -49,6 +49,9 @@
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.0",
-    "find-up": "^4.1.0"
+    "find-up": "^4.1.0",
+    "jest": "^26.1.0",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^5.2.1"
   }
 }
