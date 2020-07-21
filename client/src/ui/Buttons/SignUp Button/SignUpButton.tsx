@@ -4,8 +4,9 @@ import { ButtonProps } from '../Button/Button';
 
 export const SignUpButton: React.FC<ButtonProps> = ({
     color,
-    children
+    children,
+    onClick
 }) => 
-    <StyledSignUpButton color={color}>
+    <StyledSignUpButton color={color} onClick={onClick}>
         {children}
     </StyledSignUpButton>;

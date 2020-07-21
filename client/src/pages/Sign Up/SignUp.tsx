@@ -8,7 +8,10 @@ import { SignUpMainDiv,
 import { SignUpButton } from '../../ui/Buttons/SignUp Button/SignUpButton';
 import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
+import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
+import { saveToken, getToken } from '../../localStorage';
+import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
 
 export const pageTransition = {
     in: {
@@ -27,22 +30,31 @@ const signUp = gql`
                         $firstName: String!,
                         $lastName: String!
                     ) {
-                        createUser(
+                        createUser(data: {
                                     username: $username, 
                                     email: $email, 
                                     password: $password,
                                     firstName: $firstName,
                                     lastName: $lastName
-                                  ) {
+                                }) {
                                       id
                                       username
                                       email
+                                      password
                                   }
                     }
 `;
 
+const loginUser = gql`
+    mutation Login($username: String!, $password: String!) {
+        login(data: { username: $username, password: $password}) {
+            accessToken
+        }
+    }
+`;
+
 const SignUpPage: React.FC<any> = (props) => {
-    const [state, setState] = useState({
+    const [signUpDetails, setSignUpDetails] = useState({
         username: "",
         email: "",
         password: "",
@@ -50,14 +62,49 @@ const SignUpPage: React.FC<any> = (props) => {
         lastName: "",
     });
 
-    const [createUser, { data }] = useMutation(signUp);
+    const [login, { data, error: loginError, loading: loginLoading }] = useMutation(loginUser);
+
+    const [createUser, { data: createUserData, error: signUpError, loading: signUpLoading }] = useMutation(signUp);
+
+    let signUpMutError = getGQLError(signUpError);
 
     const handleChange = (e: any) => {
-        setState({
-            ...state,
+        setSignUpDetails({
+            ...signUpDetails,
             [e.target.name]: e.target.value
         });
     };
+
+    const handleLogin = async (username: string, password: string) => {
+        try {
+            const { data } = await login({
+                variables: { username, password }
+            });
+            if (data && data.login) {
+                saveToken(data.login.accessToken);
+            }
+            // Redirect user to dashboard page
+            props.history.push('/dashboard');
+        } catch (e) {
+            return
+        }
+    }
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        createUser({
+            variables: { username: signUpDetails.username, 
+                         email: signUpDetails.email,
+                         password: signUpDetails.password,
+                         firstName: signUpDetails.firstName,
+                         lastName: signUpDetails.lastName
+            }
+        })
+        if (createUserData && createUserData.createUser) {
+            const { username, password } = createUserData.createUser;
+            handleLogin(username, password)
+        }
+    }
 
     return(
         <>
@@ -70,6 +117,7 @@ const SignUpPage: React.FC<any> = (props) => {
                 <SignUpBackground />
                 <SignUpMainDiv>
                     <SignUpCentered>
+                        {signUpMutError && <ErrorMessage error={signUpMutError} />}
                         <Header>Sign Up</Header>
                         <div style={{position: "relative", bottom: "10px"}}>
                             <Paragraph>Already have an account? <StyledLink to="/login">Click here to log in</StyledLink></Paragraph>
@@ -80,16 +128,16 @@ const SignUpPage: React.FC<any> = (props) => {
                                         flexDirection: "column",
                                         justifyContent: "space-between"}}>
                             <SignUpLabel>Username:</SignUpLabel>
-                            <Input value={state.username} name="username" type="text" onChange={handleChange}/>
+                            <Input value={signUpDetails.username} name="username" type="text" onChange={handleChange}/>
                             <SignUpLabel>Email:</SignUpLabel>
-                            <Input value={state.email} name="email" type="text" onChange={handleChange}/>
+                            <Input value={signUpDetails.email} name="email" type="text" onChange={handleChange}/>
                             <SignUpLabel>Password:</SignUpLabel>
-                            <Input value={state.password} name="password" type="password" onChange={handleChange}/>
+                            <Input value={signUpDetails.password} name="password" type="password" onChange={handleChange}/>
                             <SignUpLabel>First Name:</SignUpLabel>
-                            <Input value={state.firstName} name="firstName" type="text" onChange={handleChange}/>
+                            <Input value={signUpDetails.firstName} name="firstName" type="text" onChange={handleChange}/>
                             <SignUpLabel>Last Name:</SignUpLabel>
-                            <Input value={state.lastName} name="lastName" type="text" onChange={handleChange}/>
-                            <SignUpButton color="success">Sign Up</SignUpButton>
+                            <Input value={signUpDetails.lastName} name="lastName" type="text" onChange={handleChange}/>
+                            <SignUpButton color="success" onClick={handleSubmit}>Sign Up</SignUpButton>
                         </div>
                     </SignUpCentered>
                 </SignUpMainDiv>
