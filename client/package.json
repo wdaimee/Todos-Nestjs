@@ -29,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -49,8 +49,8 @@
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.0",
+    "faker": "^4.1.0",
     "find-up": "^4.1.0",
-    "jest": "^26.1.0",
     "jest-puppeteer": "^4.4.0",
     "puppeteer": "^5.2.1"
   }
