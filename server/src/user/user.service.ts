@@ -21,6 +21,7 @@ export class UserService {
         return this.userRepository.findOne({ where: { username }});
     }
 
+    // Should only be useable by an admin TODO: Create and Admin Guard
     async remove(id: string): Promise<void> {
         await this.userRepository.delete(id);
     }

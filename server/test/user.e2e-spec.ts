@@ -39,4 +39,8 @@ describe('User', () => {
                                    lastName: "daimee"
                     }}})
     })
+
+    // Create a user
+
+    // Find a logged in user
 })
