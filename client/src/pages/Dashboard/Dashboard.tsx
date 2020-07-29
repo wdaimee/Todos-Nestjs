@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DashboardPageDiv } from './Dashboard.styles';
 import Header from '../../components/Header/Header';
+import NavbarMobile from '../../components/Navbar-Mobile/Navbar-Mobile';
 
 const DashboardPage: React.FC<any> = props => {
     const [todosList, setTodosList] = useState([]);
@@ -12,6 +13,8 @@ const DashboardPage: React.FC<any> = props => {
     return(
         <DashboardPageDiv>
             <Header />
+            <div></div>
+            <NavbarMobile />
         </DashboardPageDiv>
     )
 };

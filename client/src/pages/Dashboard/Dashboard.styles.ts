@@ -5,4 +5,7 @@ export const DashboardPageDiv = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 6% 1fr 10%;
+    @media (min-width: 768px) {
+        grid-template-rows: 6% 1fr;
+    }
 `;
