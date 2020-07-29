@@ -1,35 +1,51 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Todo } from './todo.entity';
+import { User } from '../user/user.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoService } from './todo.service';
 import { InputTodo, DateCompletedTodo } from './input/todo.input';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CurrentUser } from '../user/CurrentUser.decorator';
 
 @Resolver(() => Todo)
 export class TodoResolver {
     constructor (private readonly todoService: TodoService) {}
 
+    // Find all todo's for a user by date
     @Query(() => [ CreateTodoDto ])
-    async allTodos() {
-        return this.todoService.findAll();
+    @UseGuards(JwtAuthGuard)
+    async allTodos(@CurrentUser() user: User) {
+        return this.todoService.findAll(user.id);
     }
 
-    //Find all open Todos for a user
+    // Find all open Todos for a user
     @Query(() => [ CreateTodoDto ])
-    async allOpenTodos() {
-        return this.todoService.allOpen();
+    @UseGuards(JwtAuthGuard)
+    async allOpenTodos(@CurrentUser() user: User) {
+        return this.todoService.allOpen(user.id);
     }
 
+    // Find a single Todo for a user
     @Query(() => CreateTodoDto)
-    async todo(@Args('id') id: string) {
-        return this.todoService.findOne(id);
+    @UseGuards(JwtAuthGuard)
+    async todo(
+        @Args('id') id: string,
+        @CurrentUser() user: User
+    ) {
+        return this.todoService.findOne(id, user.id);
     }
 
+    // Create a todo for a user
     @Mutation(() => CreateTodoDto)
+    @UseGuards(JwtAuthGuard)
     async createTodo(@Args('data') data: InputTodo) {
         return this.todoService.createTodo(data);
     }
 
+    // Add date completed for user
     @Mutation(() => CreateTodoDto) 
+    @UseGuards(JwtAuthGuard)
     async dateCompleted(
         @Args('id') id: string,
         @Args('data') data: DateCompletedTodo
@@ -39,12 +55,14 @@ export class TodoResolver {
     
     // Works but need to respond back with deleted Todo or success message
     @Mutation(returns => CreateTodoDto)
+    @UseGuards(JwtAuthGuard)
     async deleteTodo(@Args('id') id: string) {
         await this.todoService.remove(id);
     }
 
-    // Add update Todo
+    // Add update Todo, need to verify with logged in user
     @Mutation(() => CreateTodoDto)
+    @UseGuards(JwtAuthGuard)
     async updateTodo(
         @Args('id') id: string,
         @Args('data') data: InputTodo

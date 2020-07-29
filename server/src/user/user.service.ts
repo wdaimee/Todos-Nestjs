@@ -17,8 +17,12 @@ export class UserService {
         return this.userRepository.find();
     }
 
-    findOne(username: string): Promise<User> {
+    findOneByUsername(username: string): Promise<User> {
         return this.userRepository.findOne({ where: { username }});
+    }
+
+    findOneById(id: string): Promise<User> {
+        return this.userRepository.findOne({ where: { id }})
     }
 
     // Should only be useable by an admin TODO: Create and Admin Guard
