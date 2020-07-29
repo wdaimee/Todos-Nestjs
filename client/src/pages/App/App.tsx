@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoginPage from '../Log In/LogIn';
 import SignUpPage from '../Sign Up/SignUp';
 import Footer from '../../components/Footer/Footer';
+import DashBoardPage from '../Dashboard/Dashboard';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';

@@ -21,13 +21,13 @@ export class TodoService {
 
     // Get all Todos for a user that are currently open
     allOpenTodos(userId: string): Promise<Todo[]> {
-        return this.todoRepository.find({ where: { user: userId, status: 'open' } });
+        return this.todoRepository.find({ where: { user: userId, status: 'open' }, order: { dueDate: "DESC" } });
     }
 
     // Get a specific user for a todo
     async findOneTodo(id: string, userId: string): Promise<Todo> {
-        const todo = await this.todoRepository.findOne({ where: { id, user: userId }});
-        if (id !== todo.user.id) {
+        const todo = await this.todoRepository.findOne({ where: { id, user: userId }, order: { dueDate: "DESC" }} );
+        if (userId !== todo.user.id) {
             throw new Error("You don't have access to this Todo")
         }
         return todo;
