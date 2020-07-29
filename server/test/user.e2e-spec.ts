@@ -8,7 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from '../src/config/config.service';
 
-const app = 'http://localhost:3001'
+const app = 'http://localhost:3001';
 
 describe('User', () => {
 

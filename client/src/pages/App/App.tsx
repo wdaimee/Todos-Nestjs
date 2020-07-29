@@ -22,6 +22,9 @@ function App() {
           <Route exact path="/signup" render={({ history }) => 
             <SignUpPage history={history}/>
           } />
+          <Route exact path="/dashboard" render={() => {
+            <DashBoardPage />
+          }} />
           <Route path="/*" render={() => 
             <div className="error">
               <h2>404</h2>
