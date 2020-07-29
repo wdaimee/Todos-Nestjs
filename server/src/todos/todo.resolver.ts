@@ -16,14 +16,14 @@ export class TodoResolver {
     @Query(() => [ CreateTodoDto ])
     @UseGuards(JwtAuthGuard)
     async allTodos(@CurrentUser() user: User) {
-        return this.todoService.findAllTodos(user.id);
+        return this.todoService.findAllTodos(user);
     }
 
     // Find all open Todos for a user
     @Query(() => [ CreateTodoDto ])
     @UseGuards(JwtAuthGuard)
     async allOpenTodos(@CurrentUser() user: User) {
-        return this.todoService.allOpenTodos(user.id);
+        return this.todoService.allOpenTodos(user);
     }
 
     // Find a single Todo for a user
@@ -39,8 +39,11 @@ export class TodoResolver {
     // Create a todo for a user
     @Mutation(() => CreateTodoDto)
     @UseGuards(JwtAuthGuard)
-    async createTodo(@Args('data') data: InputTodo) {
-        return this.todoService.createTodo(data);
+    async createTodo(
+        @Args('data') data: InputTodo,
+        @CurrentUser() user: User
+    ) {
+        return this.todoService.createTodo(data, user);
     }
 
     // Add date completed for user
@@ -48,16 +51,20 @@ export class TodoResolver {
     @UseGuards(JwtAuthGuard)
     async dateCompleted(
         @Args('id') id: string,
-        @Args('data') data: DateCompletedTodo
+        @Args('data') data: DateCompletedTodo,
+        @CurrentUser() user: User
     ) {
-        return this.todoService.addDateCompleted(id, data)
+        return this.todoService.addDateCompleted(id, data, user.id)
     }
     
     // Works but need to respond back with deleted Todo or success message
     @Mutation(returns => CreateTodoDto)
     @UseGuards(JwtAuthGuard)
-    async deleteTodo(@Args('id') id: string) {
-        await this.todoService.removeTodo(id);
+    async deleteTodo(
+        @Args('id') id: string,
+        @CurrentUser() user: User
+    ) {
+        await this.todoService.removeTodo(id, user.id);
     }
 
     // Add update Todo, need to verify with logged in user
@@ -65,8 +72,9 @@ export class TodoResolver {
     @UseGuards(JwtAuthGuard)
     async updateTodo(
         @Args('id') id: string,
-        @Args('data') data: InputTodo
+        @Args('data') data: InputTodo,
+        @CurrentUser() user: User
     ) {
-        return this.todoService.updateTodo(id, data);
+        return this.todoService.updateTodo(id, data, user.id);
     }
 }
