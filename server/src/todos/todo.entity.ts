@@ -15,13 +15,13 @@ export class Todo {
     @CreateDateColumn({type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
     dateCreated: Date;
 
-    @Column()
+    @Column({ nullable: true })
     dueDate: string;
 
     @Column({ nullable: true })
     dateCompleted: string;
 
-    @Column('varchar', {length: 100})
+    @Column('varchar', {length: 100, nullable: true})
     status: string;
 
     @ManyToOne(type => User, user => user.todos)

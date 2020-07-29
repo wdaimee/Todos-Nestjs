@@ -11,8 +11,7 @@ import { InputTodo, DateCompletedTodo } from './input/todo.input';
 @Injectable()
 export class TodoService {
     constructor(@InjectRepository(Todo) 
-    private todoRepository: Repository<Todo>, 
-    private readonly userService: UserService
+    private todoRepository: Repository<Todo>
     ) {}
 
     // Find all Todos that belong to a user

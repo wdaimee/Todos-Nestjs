@@ -67,7 +67,8 @@ type Mutation {
 
 type Query {
   allUsers: [CreateUserDto!]!
-  user(username: String!): CreateUserDto!
+  findByUsername(username: String!): CreateUserDto!
+  findUserById(id: String!): CreateUserDto!
   currentLoggedInUser: CreateUserDto!
   verifyToken(accessToken: String!): Boolean!
   allTodos: [CreateTodoDto!]!
