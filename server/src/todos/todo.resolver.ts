@@ -16,14 +16,14 @@ export class TodoResolver {
     @Query(() => [ CreateTodoDto ])
     @UseGuards(JwtAuthGuard)
     async allTodos(@CurrentUser() user: User) {
-        return this.todoService.findAll(user.id);
+        return this.todoService.findAllTodos(user.id);
     }
 
     // Find all open Todos for a user
     @Query(() => [ CreateTodoDto ])
     @UseGuards(JwtAuthGuard)
     async allOpenTodos(@CurrentUser() user: User) {
-        return this.todoService.allOpen(user.id);
+        return this.todoService.allOpenTodos(user.id);
     }
 
     // Find a single Todo for a user
@@ -33,7 +33,7 @@ export class TodoResolver {
         @Args('id') id: string,
         @CurrentUser() user: User
     ) {
-        return this.todoService.findOne(id, user.id);
+        return this.todoService.findOneTodo(id, user.id);
     }
 
     // Create a todo for a user
@@ -57,7 +57,7 @@ export class TodoResolver {
     @Mutation(returns => CreateTodoDto)
     @UseGuards(JwtAuthGuard)
     async deleteTodo(@Args('id') id: string) {
-        await this.todoService.remove(id);
+        await this.todoService.removeTodo(id);
     }
 
     // Add update Todo, need to verify with logged in user
