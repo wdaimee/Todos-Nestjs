@@ -6,15 +6,19 @@ const NavbarMobile: React.FC<any> = () => {
         <NavbarMobileDiv>
             <IconHolderDiv>
                 <StyledIcon icon="homeIcon" size="2.5rem" color="mintCream"/>
-                <StyledP>HOME</StyledP>
+                <StyledP>home</StyledP>
             </IconHolderDiv>
             <IconHolderDiv>
                 <StyledIcon icon="addIcon" size="2.5rem" color="mintCream"/>
-                <StyledP>ADD</StyledP>
+                <StyledP>add</StyledP>
             </IconHolderDiv>
             <IconHolderDiv>
                 <StyledIcon icon="historyIcon" size="2.5rem" color="mintCream"/>
-                <StyledP>HISTORY</StyledP>
+                <StyledP>history</StyledP>
+            </IconHolderDiv>
+            <IconHolderDiv>
+                <StyledIcon icon="profileIcon" size="2.5rem" color="mintCream"/>
+                <StyledP>profile</StyledP>
             </IconHolderDiv>
         </NavbarMobileDiv>
     )

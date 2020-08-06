@@ -28,4 +28,5 @@ export const StyledP = styled.p`
     margin: 0;
     place-self: center;
     font-weight: bold;
+    text-transform: uppercase;
 `;
