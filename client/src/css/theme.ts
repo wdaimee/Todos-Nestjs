@@ -1,5 +1,9 @@
 import { DefaultTheme } from 'styled-components';
 
+export type Color = 
+    'indigo' | 'prussianBlue' | 'oxfordBlue' | 'cadetGrey' | 'mintCream' | 
+    'black' | 'white' | 'success' | 'error' | 'grey';
+
 declare module 'styled-components' {
     export interface DefaultTheme {
         colors: {
