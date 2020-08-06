@@ -12,7 +12,6 @@ export const NavbarMobileDiv = styled.div`
 `;
 
 export const IconHolderDiv = styled.div`
-    
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
