@@ -12,7 +12,7 @@ export const NavbarMobileDiv = styled.div`
 `;
 
 export const IconHolderDiv = styled.div`
-    border-right: solid 2px ${({ theme }) => theme.colors.black};
+    
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
