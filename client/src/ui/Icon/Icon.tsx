@@ -21,8 +21,4 @@ export const Icon = styled(BaseIcon)`
     height: ${props => props.size};
     width: ${props => props.size};
     color: ${props => props.theme.colors[props.color]};
-
-    path, polygon {
-        fill: currentColor;
-    }
 `;
