@@ -46,15 +46,14 @@ export class TodoResolver {
         return this.todoService.createTodo(data, user);
     }
 
-    // Add date completed for user
+    // Add function for completing Todo
     @Mutation(() => CreateTodoDto) 
     @UseGuards(JwtAuthGuard)
-    async dateCompleted(
+    async todoCompleted(
         @Args('id') id: string,
-        @Args('data') data: DateCompletedTodo,
         @CurrentUser() user: User
     ) {
-        return this.todoService.addDateCompleted(id, data, user.id)
+        return this.todoService.todoCompleted(id, user.id)
     }
     
     // Works but need to respond back with deleted Todo or success message

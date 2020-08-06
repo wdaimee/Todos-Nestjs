@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Todo } from './todo.entity';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
-import { InputTodo, DateCompletedTodo } from './input/todo.input';
+import { InputTodo } from './input/todo.input';
 
 
 // TODO User Authentication and use logged in user to find all the services bellow
@@ -59,13 +59,13 @@ export class TodoService {
         return todo;
     }
 
-    // Add completed date to Todo
-    async addDateCompleted(id: string, data: DateCompletedTodo, userId: string): Promise<Todo> {
+    // Function to complete Todo
+    async todoCompleted(id: string, userId: string): Promise<Todo> {
         const todo = await this.todoRepository.findOne(id);
         if(userId !== todo.user.id) {
             throw new Error("You do not have access to this Todo");
         }
-        todo.dateCompleted = new Date(data.dateCompleted).toISOString();
+        todo.dateCompleted = new Date().toISOString();
         todo.status = 'complete';
 
         await this.todoRepository.save(todo);
