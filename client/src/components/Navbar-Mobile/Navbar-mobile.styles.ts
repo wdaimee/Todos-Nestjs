@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Icon } from '../../ui/Icon/Icon';
 
 export const NavbarMobileDiv = styled.div`
-    background-color: ${props => props.theme.colors.indigo};
+    background-color: ${({ theme }) => theme.colors.indigo};
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
@@ -12,6 +12,7 @@ export const NavbarMobileDiv = styled.div`
 `;
 
 export const IconHolderDiv = styled.div`
+    border-right: solid 2px ${({ theme }) => theme.colors.black};
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
@@ -26,4 +27,5 @@ export const StyledP = styled.p`
     font-size: 0.8rem;
     margin: 0;
     place-self: center;
+    font-weight: bold;
 `;
