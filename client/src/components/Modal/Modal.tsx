@@ -1,8 +1,7 @@
 import React from 'react';
-import { BackgroundDiv } from './Modal.styles';
+import { BackgroundDiv, ModalDiv } from './Modal.styles';
 
-// Add Type to Modal and choose between Add, Edit, and Profile
-
+// Type to select which type of Modal should be shown 
 export type Type = "add" | "edit" | "profile";
 
 export interface ModalProps extends React.HTMLProps<HTMLElement> {
@@ -14,9 +13,12 @@ export interface ModalProps extends React.HTMLProps<HTMLElement> {
 export const Modal: React.FC<ModalProps> = ({ show, title, setShow }) => {
     return(
         <>
-            { show ? <BackgroundDiv>
-                        <div style={{ backgroundColor: 'blue' }} onClick={e => setShow(false)}>{title}</div>
-                    </BackgroundDiv>
+            { show ? 
+                <BackgroundDiv>
+                    <ModalDiv onClick={e => setShow(false)}>
+
+                    </ModalDiv>
+                </BackgroundDiv>
                 :
                 null
             }

@@ -8,3 +8,9 @@ export const BackgroundDiv = styled.div`
     align-items: center;
     height: 100%;
 `;
+
+export const ModalDiv = styled.div`
+    background: ${props => props.theme.colors.indigo};
+    height: 80%;
+    width: 80%;
+`;
