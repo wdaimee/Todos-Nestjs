@@ -21,10 +21,6 @@ type CreateUserDto {
   lastName: String!
 }
 
-input DateCompletedTodo {
-  dateCompleted: String!
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -60,7 +56,7 @@ type Mutation {
   createUser(data: InputUser!): LoginOutput!
   login(data: InputLogin!): LoginOutput!
   createTodo(data: InputTodo!): CreateTodoDto!
-  dateCompleted(data: DateCompletedTodo!, id: String!): CreateTodoDto!
+  todoCompleted(id: String!): CreateTodoDto!
   deleteTodo(id: String!): CreateTodoDto!
   updateTodo(data: InputTodo!, id: String!): CreateTodoDto!
 }

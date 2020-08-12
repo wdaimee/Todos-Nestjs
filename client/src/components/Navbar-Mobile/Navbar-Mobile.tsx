@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavbarMobileDiv, IconHolderDiv, StyledIcon, StyledP } from './Navbar-mobile.styles';
 
-const NavbarMobile: React.FC<any> = () => {
+const NavbarMobile: React.FC<{setShow: React.Dispatch<React.SetStateAction<boolean>>}> = props => {
+    
     return(
         <NavbarMobileDiv>
             <IconHolderDiv>
                 <StyledIcon icon="homeIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>home</StyledP>
             </IconHolderDiv>
-            <IconHolderDiv>
+            <IconHolderDiv onClick={e => props.setShow(true)}>
                 <StyledIcon icon="addIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>add</StyledP>
             </IconHolderDiv>
