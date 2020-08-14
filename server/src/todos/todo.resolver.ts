@@ -5,7 +5,7 @@ import { User } from '../user/user.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoService } from './todo.service';
 import { InputTodo, DateCompletedTodo } from './input/todo.input';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { GqlAuthGuard } from '../auth/local-auth-guard';
 import { CurrentUser } from '../user/CurrentUser.decorator';
 
 @Resolver(() => Todo)
@@ -14,21 +14,21 @@ export class TodoResolver {
 
     // Find all todo's for a user by date
     @Query(() => [ CreateTodoDto ])
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async allTodos(@CurrentUser() user: User) {
         return this.todoService.findAllTodos(user);
     }
 
     // Find all open Todos for a user
     @Query(() => [ CreateTodoDto ])
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async allOpenTodos(@CurrentUser() user: User) {
         return this.todoService.allOpenTodos(user);
     }
 
     // Find a single Todo for a user
     @Query(() => CreateTodoDto)
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async todo(
         @Args('id') id: string,
         @CurrentUser() user: User
@@ -38,7 +38,7 @@ export class TodoResolver {
 
     // Create a todo for a user
     @Mutation(() => CreateTodoDto)
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async createTodo(
         @Args('data') data: InputTodo,
         @CurrentUser() user: User
@@ -48,7 +48,7 @@ export class TodoResolver {
 
     // Add function for completing Todo
     @Mutation(() => CreateTodoDto) 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async todoCompleted(
         @Args('id') id: string,
         @CurrentUser() user: User
@@ -58,7 +58,7 @@ export class TodoResolver {
     
     // Works but need to respond back with deleted Todo or success message
     @Mutation(returns => CreateTodoDto)
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async deleteTodo(
         @Args('id') id: string,
         @CurrentUser() user: User
@@ -68,7 +68,7 @@ export class TodoResolver {
 
     // Add update Todo, need to verify with logged in user
     @Mutation(() => CreateTodoDto)
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async updateTodo(
         @Args('id') id: string,
         @Args('data') data: InputTodo,

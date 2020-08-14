@@ -18,11 +18,11 @@ export class UserService {
     }
 
     findOneByUsername(username: string): Promise<User> {
-        return this.userRepository.findOne({ where: { username }});
+        return this.userRepository.findOne({ where: { username: username }});
     }
 
     findOneById(id: string): Promise<User> {
-        return this.userRepository.findOne({ where: { id }})
+        return this.userRepository.findOne({ where: { id: id }})
     }
 
     // Should only be useable by an admin TODO: Create and Admin Guard
@@ -49,8 +49,9 @@ export class UserService {
         return user;
     }
 
-    async findLoggedInUser(id: string): Promise<User> {
-        const currentLoggedInUser = await this.userRepository.findOne({ id });
+    async findLoggedInUser(username: string): Promise<User> {
+        console.log(username)
+        const currentLoggedInUser = await this.userRepository.findOne({ where: { username }});
         return currentLoggedInUser;
     }
 }

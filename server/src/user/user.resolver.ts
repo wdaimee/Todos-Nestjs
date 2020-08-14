@@ -34,11 +34,11 @@ export class UserResolver {
         return this.userService.findOneById(id);
     }
 
-    // Ge the currently Logged In User
+    // Get the currently Logged In User
     @Query(() => CreateUserDto)
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async currentLoggedInUser(@CurrentUser() user: User) {
-        return this.userService.findLoggedInUser(user.id);
+        return this.userService.findLoggedInUser(user.username);
     }
 
     // Signup or create a user
