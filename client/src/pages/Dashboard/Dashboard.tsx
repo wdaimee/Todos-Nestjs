@@ -28,7 +28,7 @@ const DashboardPage: React.FC<any> = props => {
     // useEffect to set Logged In User
     useEffect(() => {
         if(loggedInUser) {
-            setUser(loggedInUser);
+            setUser(loggedInUser.currentLoggedInUser);
         }
     }, [loggedInUser]);
 
