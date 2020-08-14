@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Header, Label, Input } from './AddForm.styes';
+import { Header, Label, Input, ButtonDiv } from './AddForm.styes';
 import { AddTodoButton } from '../../Buttons/AddTodo Button/AddTodoButton';
 
-export const AddForm: React.FC<any> = () => {
+export interface AddFormProps {
+    setShow: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const AddForm: React.FC<AddFormProps> = ({ setShow }) => {
     const [addTodoDetails, setAddTodoDetails] = useState({
         title: "",
         notes: "",
@@ -35,12 +39,14 @@ export const AddForm: React.FC<any> = () => {
                     Due Date:
                 </Label>
                 <Input type="date" name="dueDate" value={addTodoDetails.dueDate} onChange={handleChange} />
-                <AddTodoButton color="success">
-                    ADD
-                </AddTodoButton>
-                <AddTodoButton color="cadetGrey">
-                    CANCEL
-                </AddTodoButton>
+                <ButtonDiv>
+                    <AddTodoButton color="success">
+                        ADD
+                    </AddTodoButton>
+                    <AddTodoButton color="cadetGrey" onClick={e => setShow(false)}>
+                        CANCEL
+                    </AddTodoButton>
+                </ButtonDiv>
             </form>
         </>
     )

@@ -11,7 +11,6 @@ const DashboardPage: React.FC<any> = props => {
     const [show, setShow] = useState(false);
 
     // useEffect to pull todosList
-    // useEffect to pull the currently logged in user
 
     return(
         <DashboardPageDiv>

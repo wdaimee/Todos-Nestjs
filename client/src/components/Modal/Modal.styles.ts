@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Icon } from '../../ui/Icon/Icon';
 
 export const BackgroundDiv = styled.div`
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,6 +17,7 @@ export const ModalDiv = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 `;
 

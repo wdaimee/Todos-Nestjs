@@ -24,7 +24,7 @@ export const Modal: React.FC<ModalProps> = ({ show, type, setShow }) => {
                             onClick={e => setShow(false)} 
                         />
                         { type === "add" ? 
-                            <AddForm /> 
+                            <AddForm setShow={setShow}/> 
                             :
                             null
                         }

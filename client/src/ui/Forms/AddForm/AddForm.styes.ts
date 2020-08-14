@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Header = styled.h1`
+    margin: 0;
     font-size: 1.5rem;
     text-transform: uppercase;
     color: ${props => props.theme.colors.mintCream};
@@ -27,6 +28,9 @@ export const Input = styled.input`
     }
 `;
 
-export const NoteInput = styled(Input)`
-    height: 52px;
+export const ButtonDiv = styled.div`
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `;
