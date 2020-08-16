@@ -39,7 +39,7 @@ const DashboardPage: React.FC<any> = props => {
     const { loading, error, data: loggedInUser } = useQuery(LoggedInUser_Query);
     const { loading: loadingTodos, data: todosListData } = useQuery(TodoList_Query);
     const [todosList, setTodosList] = useState<Todo[]>([]);
-    const [user, setUser] = useState<User | null>();
+    const [user, setUser] = useState<User>();
     // Show Modal
     const [show, setShow] = useState<boolean>(false);
 
@@ -61,7 +61,7 @@ const DashboardPage: React.FC<any> = props => {
         <DashboardPageDiv>
             <Header />
             <div>
-                {loadingTodos ? <h1>Loading</h1> : null}
+                {loadingTodos ? <h1>Loading Todos</h1> : null}
                 <Modal type="add" show={show} setShow={setShow}/>
             </div>
             <NavbarMobile setShow={setShow}/>

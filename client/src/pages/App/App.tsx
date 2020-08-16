@@ -8,11 +8,6 @@ import { AnimatePresence } from 'framer-motion';
 import './App.css';
 
 function App() {
-  // Check to see if there is a logged in user
-  const [user, setUser] = useState('');
-
-  // Use effect for GraphQL query to check if a user is logged in
-
   return (
     <div className="App">
       <AnimatePresence>
