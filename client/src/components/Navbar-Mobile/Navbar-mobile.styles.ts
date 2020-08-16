@@ -4,7 +4,7 @@ import { Icon } from '../../ui/Icon/Icon';
 export const NavbarMobileDiv = styled.div`
     background-color: ${({ theme }) => theme.colors.indigo};
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     @media (min-width: 768px) {
         display: none;

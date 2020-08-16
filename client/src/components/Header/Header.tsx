@@ -16,10 +16,10 @@ const Paragraph = styled.p`
     font-weight: bold;
 `;
 
-const Header: React.FC<any> = () => (
+const Header: React.FC<any> = ({ children }) => (
     <>    
         <Div>
-            <Paragraph>To-Do</Paragraph>
+            <Paragraph>{children}</Paragraph>
         </Div>
     </>
 );

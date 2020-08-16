@@ -40,7 +40,7 @@ const DashboardPage: React.FC<any> = props => {
     const { loading: loadingTodos, data: todosListData } = useQuery(TodoList_Query);
     const [todosList, setTodosList] = useState<Todo[]>([]);
     const [user, setUser] = useState<User>();
-    // Show Modal
+    // Show Modal for Adding Todo
     const [show, setShow] = useState<boolean>(false);
 
     // useEffect to set Logged In User
@@ -59,7 +59,7 @@ const DashboardPage: React.FC<any> = props => {
 
     return(
         <DashboardPageDiv>
-            <Header />
+            <Header>Home</Header>
             <div>
                 {loadingTodos ? <h1>Loading Todos</h1> : null}
                 <Modal type="add" show={show} setShow={setShow}/>
