@@ -5,7 +5,9 @@ import { DashboardPageDiv } from './Dashboard.styles';
 import Header from '../../components/Header/Header';
 import NavbarMobile from '../../components/Navbar-Mobile/Navbar-Mobile';
 import { Modal } from '../../components/Modal/Modal';
+import { User, Todo } from '../../types';
 
+// Query to get logged in user and update state
 const LoggedInUser_Query = gql`
     query LoggedInUser {
         currentLoggedInUser {
@@ -18,12 +20,28 @@ const LoggedInUser_Query = gql`
     }
 `;
 
+// Query to get todos for logged in user
+const TodoList_Query = gql`
+    query TodosList {
+        allTodos {
+            id,
+            title,
+            body,
+            dateCreated,
+            dueDate,
+            dateCompleted,
+            status
+        }
+    }
+`;
+
 const DashboardPage: React.FC<any> = props => {
     const { loading, error, data: loggedInUser } = useQuery(LoggedInUser_Query);
-    const [todosList, setTodosList] = useState([]);
-    const [user, setUser] = useState([]);
+    const { loading: loadingTodos, data: todosListData } = useQuery(TodoList_Query);
+    const [todosList, setTodosList] = useState<Todo[]>([]);
+    const [user, setUser] = useState<User | null>();
     // Show Modal
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState<boolean>(false);
 
     // useEffect to set Logged In User
     useEffect(() => {
@@ -33,11 +51,17 @@ const DashboardPage: React.FC<any> = props => {
     }, [loggedInUser]);
 
     // useEffect to pull todosList
+    useEffect(() => {
+        if(todosListData) {
+            setTodosList([...todosList, todosListData.allTodos])
+        }
+    }, [todosListData]);
 
     return(
         <DashboardPageDiv>
             <Header />
             <div>
+                {loadingTodos ? <h1>Loading</h1> : null}
                 <Modal type="add" show={show} setShow={setShow}/>
             </div>
             <NavbarMobile setShow={setShow}/>
