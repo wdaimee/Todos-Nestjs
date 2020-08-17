@@ -4,6 +4,7 @@ import { History } from './Icons/history-24px';
 import { Profile } from './Icons/profile';
 import { Clear } from './Icons/clear';
 import { Edit } from './Icons/edit-24px';
+import { Delete } from './Icons/delete';
 
 export const icons = {
     addIcon: Add,
@@ -11,5 +12,6 @@ export const icons = {
     historyIcon: History,
     profileIcon: Profile,
     clearIcon: Clear,
-    editIcon: Edit
+    editIcon: Edit,
+    deleteIcon: Delete
 };
