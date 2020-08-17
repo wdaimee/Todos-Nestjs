@@ -5,6 +5,7 @@ import { Profile } from './Icons/profile';
 import { Clear } from './Icons/clear';
 import { Edit } from './Icons/edit-24px';
 import { Delete } from './Icons/delete';
+import { CheckCircle } from './Icons/check_circle';
 
 export const icons = {
     addIcon: Add,
@@ -13,5 +14,6 @@ export const icons = {
     profileIcon: Profile,
     clearIcon: Clear,
     editIcon: Edit,
-    deleteIcon: Delete
+    deleteIcon: Delete,
+    checkCircleIcon: CheckCircle
 };
