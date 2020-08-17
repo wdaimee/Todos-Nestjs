@@ -28,3 +28,8 @@ export const CircleButton = styled.div`
         cursor: pointer
     }
 `;
+
+export const IconDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
