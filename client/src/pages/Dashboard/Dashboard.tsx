@@ -6,6 +6,7 @@ import Header from '../../components/Header/Header';
 import NavbarMobile from '../../components/Navbar-Mobile/Navbar-Mobile';
 import { Modal } from '../../components/Modal/Modal';
 import { User, Todo } from '../../types';
+import { Card } from '../../components/Card/Card';
 
 // Query to get logged in user and update state
 const LoggedInUser_Query = gql`
@@ -61,7 +62,7 @@ const DashboardPage: React.FC<any> = props => {
         <DashboardPageDiv>
             <Header>Home</Header>
             <div>
-                {loadingTodos ? <h1>Loading Todos</h1> : null}
+                {loadingTodos ? <h1>Loading Todos</h1> : <Card title="some title" status="open" body="some notes"/>}
                 <Modal type="add" show={show} setShow={setShow}/>
             </div>
             <NavbarMobile setShow={setShow}/>

@@ -16,7 +16,8 @@ declare module 'styled-components' {
             white: string,
             success: string,
             error: string,
-            grey: string
+            grey: string,
+            darkGrey: string
         }
     }
 }
@@ -32,6 +33,7 @@ export const theme: DefaultTheme = {
         white: '#000',
         success: '#20BF55',
         error: 'red',
-        grey: '#c4c4c4'
+        grey: '#c4c4c4',
+        darkGrey: '#b7b7b7'
     }
 }
