@@ -24,7 +24,7 @@ export const LoggedInUser_Query = gql`
 // Query to get todos for logged in user
 export const TodoList_Query = gql`
     query TodosList {
-        allTodos {
+        allTodosToday {
             id,
             title,
             body,
@@ -53,7 +53,7 @@ const DashboardPage: React.FC<any> = props => {
     // useEffect to pull todosList
     useEffect(() => {
         if(todosListData) {
-            setTodosList(todosListData.allTodos)
+            setTodosList(todosListData.allTodosToday)
         }
     }, [todosListData]);
 

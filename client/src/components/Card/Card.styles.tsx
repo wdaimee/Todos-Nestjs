@@ -11,6 +11,7 @@ export const MainDiv = styled.div<Props>`
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    box-shadow: ${props => props.status === 'open' ? '0px 2px 5px black' : 'none'};
     background-color: ${props => props.status === 'open' ? props.theme.colors.cadetGrey : props.theme.colors.darkGrey};
     display: grid;
     grid-template-columns: 12% 1fr 1fr 20%;
@@ -23,6 +24,7 @@ export const CircleButton = styled.div`
     border: 2px solid ${props => props.theme.colors.black};
     border-radius: 50%;
     background-color: ${props => props.theme.colors.grey};
+    box-shadow: 3px 3px 5px ${props => props.theme.colors.greyedOut};
     grid-row-start: 2;
     place-self: center;
     &:hover {
@@ -53,6 +55,7 @@ export const StyledHeader = styled.h1<Props>`
     font-size: 1.0rem;
     text-decoration: ${({ status }) => status === 'complete' ? 'line-through' : 'none'};  
     color: ${props => props.status === 'complete' ? props.theme.colors.greyedOut : props.theme.colors.black};
+    text-shadow: ${props => props.status === 'open' ? '3px 3px 5px #808080' : 'none'};
     justify-self: start;
     align-self: center;
     grid-column-start: 2;
@@ -63,14 +66,16 @@ export const StyledNotes = styled.p<Props>`
     font-size: 1.0rem;
     text-decoration: ${({ status }) => status === 'complete' ? 'line-through' : 'none'};
     color: ${props => props.status === 'complete' ? props.theme.colors.greyedOut : props.theme.colors.black};
+    text-shadow: ${props => props.status === 'open' ? '3px 3px 5px #808080' : 'none'};
     grid-column-start: 2;
     grid-column-end: 4;
     margin: 0;
     justify-self: start;
 `;
 
-export const StyledDate = styled.p`
+export const StyledDate = styled.p<Props>`
     font-size: 1.0rem;
+    text-shadow: ${props => props.status === 'open' ? '3px 3px 5px #808080' : 'none'};
     margin: 0;
     justify-self: center;
     grid-column-end: span 2;

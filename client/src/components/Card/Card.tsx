@@ -52,10 +52,10 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
 
     return(
         <MainDiv status={status}>
-            {status === 'open' ? <CircleButton onClick={handleStatusChange}/> : <StyledCheckIcon icon="checkCircleIcon" size="2.0rem" color="black" onClick={handleStatusChange}/>}
+            {status === 'open' ? <CircleButton onClick={handleStatusChange}/> : <StyledCheckIcon icon="checkCircleIcon" size="2.0rem" color="success" onClick={handleStatusChange}/>}
             <StyledHeader status={status}>{title.toUpperCase()}</StyledHeader>
             <StyledNotes status={status}>{body}</StyledNotes>
-            <StyledDate>Due: {dueDate?.substr(0, dueDate.indexOf("T"))}</StyledDate>
+            <StyledDate status={status}>Due: {dueDate?.substr(0, dueDate.indexOf("T"))}</StyledDate>
             {dateCompleted ? <StyledDate>Complete: {dateCompleted?.substr(0, dateCompleted.indexOf("T"))}</StyledDate> : null}
             <IconDiv>
                 <StyledIcon icon="editIcon" size="2.0rem" color="black" />
