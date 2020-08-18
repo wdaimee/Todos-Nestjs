@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MainDiv, CircleButton, StyledIcon, IconDiv, ContentDiv, StyledHeader, StyledNotes, StyledDate } from './Card.styles';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
@@ -14,8 +14,6 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 };
 
 export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateCompleted, status}) => {
-    const [cardStatus, setCardStatus] = useState(status)
-
     const [deleteTodo, { data, error, loading}] = useMutation(gql`
         mutation DeleteTodo($id: String!) {
             deleteTodo(id: $id)
@@ -34,8 +32,8 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
     }
 
     return(
-        <MainDiv status={cardStatus}>
-            {cardStatus === 'open' ? <CircleButton /> : <StyledIcon icon="checkCircleIcon" size="1.6rem" color="black"/>}
+        <MainDiv status={status}>
+            {status === 'open' ? <CircleButton /> : <StyledIcon icon="checkCircleIcon" size="1.6rem" color="black"/>}
             <ContentDiv>
                 <StyledHeader>{title}</StyledHeader>
                 <StyledNotes>{body}</StyledNotes>

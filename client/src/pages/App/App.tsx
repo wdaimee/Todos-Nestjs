@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import LoginPage from '../Log In/LogIn';
 import SignUpPage from '../Sign Up/SignUp';
 import Footer from '../../components/Footer/Footer';
@@ -6,8 +6,11 @@ import DashBoardPage from '../Dashboard/Dashboard';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
+import { User } from '../../types';
 
 function App() {
+  const [user, setUser] = useState<User>();
+
   return (
     <div className="App">
       <AnimatePresence>
@@ -18,8 +21,8 @@ function App() {
           <Route exact path="/signup" render={({ history }) => 
             <SignUpPage history={history}/>
           } />
-          <Route exact path="/dashboard" render={() => 
-            <DashBoardPage />
+          <Route exact path="/dashboard" render={({ history }) => 
+            <DashBoardPage history={history} setUser={setUser}/>
           } />
           <Route path="/*" render={() => 
             <div className="error">

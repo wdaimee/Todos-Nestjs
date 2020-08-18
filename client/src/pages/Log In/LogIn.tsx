@@ -13,7 +13,7 @@ import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
-import { saveToken, getToken } from '../../localStorage';
+import { saveToken } from '../../localStorage';
 import { pageTransition } from '../Sign Up/SignUp';
 
 const LoginPage: React.FC<any> = (props) => {
@@ -43,7 +43,7 @@ const LoginPage: React.FC<any> = (props) => {
         e.preventDefault();
         try {
             const { data } = await login({ 
-                variables: { username: loginDetails.username, password: loginDetails.password } 
+                variables: { username: loginDetails.username, password: loginDetails.password }
             });
             if (data && data.login) {
                 saveToken(data.login.accessToken);

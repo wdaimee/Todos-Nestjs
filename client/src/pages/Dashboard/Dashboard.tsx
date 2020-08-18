@@ -5,11 +5,11 @@ import { DashboardPageDiv, MainContDiv } from './Dashboard.styles';
 import Header from '../../components/Header/Header';
 import NavbarMobile from '../../components/Navbar-Mobile/Navbar-Mobile';
 import { Modal } from '../../components/Modal/Modal';
-import { User, Todo } from '../../types';
+import { Todo } from '../../types';
 import { Card } from '../../components/Card/Card';
 
 // Query to get logged in user and update state
-const LoggedInUser_Query = gql`
+export const LoggedInUser_Query = gql`
     query LoggedInUser {
         currentLoggedInUser {
             id,
@@ -40,14 +40,13 @@ const DashboardPage: React.FC<any> = props => {
     const { loading, error, data: loggedInUser } = useQuery(LoggedInUser_Query);
     const { loading: loadingTodos, data: todosListData } = useQuery(TodoList_Query);
     const [todosList, setTodosList] = useState<Todo[]>([]);
-    const [user, setUser] = useState<User>();
     // Show Modal for Adding Todo
     const [show, setShow] = useState<boolean>(false);
 
     // useEffect to set Logged In User
     useEffect(() => {
         if(loggedInUser) {
-            setUser(loggedInUser.currentLoggedInUser);
+            props.setUser(loggedInUser.currentLoggedInUser);
         }
     }, [loggedInUser]);
 
@@ -77,7 +76,7 @@ const DashboardPage: React.FC<any> = props => {
                     )) : <h1>No Todos</h1>}
                 </MainContDiv>
             }
-            <NavbarMobile setShow={setShow}/>
+            <NavbarMobile setShow={setShow} history={props.history}/>
         </DashboardPageDiv>
     )
 };

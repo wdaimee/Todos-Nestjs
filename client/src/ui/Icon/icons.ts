@@ -6,6 +6,7 @@ import { Clear } from './Icons/clear';
 import { Edit } from './Icons/edit-24px';
 import { Delete } from './Icons/delete';
 import { CheckCircle } from './Icons/check_circle';
+import { Logout } from './Icons/logout';
 
 export const icons = {
     addIcon: Add,
@@ -15,5 +16,6 @@ export const icons = {
     clearIcon: Clear,
     editIcon: Edit,
     deleteIcon: Delete,
-    checkCircleIcon: CheckCircle
+    checkCircleIcon: CheckCircle,
+    logoutIcon: Logout
 };

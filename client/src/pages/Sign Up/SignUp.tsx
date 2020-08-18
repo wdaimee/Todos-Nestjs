@@ -10,7 +10,7 @@ import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
-import { saveToken, getToken } from '../../localStorage';
+import { saveToken } from '../../localStorage';
 import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
 
 export const pageTransition = {

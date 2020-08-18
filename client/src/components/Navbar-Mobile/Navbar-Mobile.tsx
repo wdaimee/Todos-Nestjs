@@ -1,8 +1,19 @@
 import React from 'react';
 import { NavbarMobileDiv, IconHolderDiv, StyledIcon, StyledP } from './Navbar-mobile.styles';
+import { deleteToken } from '../../localStorage';
+import { History } from 'history';
 
-const NavbarMobile: React.FC<{setShow: React.Dispatch<React.SetStateAction<boolean>>}> = props => {
-    
+export interface NavbarProps {
+    setShow: React.Dispatch<React.SetStateAction<boolean>>,
+    history: History
+}
+
+const NavbarMobile: React.FC<NavbarProps> = props => {
+    const logout = () => {
+        deleteToken();
+        props.history.push('login');
+    }
+
     return(
         <NavbarMobileDiv>
             <IconHolderDiv>
@@ -21,8 +32,8 @@ const NavbarMobile: React.FC<{setShow: React.Dispatch<React.SetStateAction<boole
                 <StyledIcon icon="profileIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>profile</StyledP>
             </IconHolderDiv>
-            <IconHolderDiv>
-                <StyledIcon icon="historyIcon" size="2.5rem" color="mintCream"/>
+            <IconHolderDiv onClick={logout}>
+                <StyledIcon icon="logoutIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>logout</StyledP>
             </IconHolderDiv>
         </NavbarMobileDiv>
