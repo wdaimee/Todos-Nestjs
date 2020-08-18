@@ -34,12 +34,10 @@ export class TodoService {
     } 
 
     // Delete a specific Todo
-    async removeTodo(id: string, userId: string): Promise<void> {
-        const todo = await this.todoRepository.findOne({ where: { id } });
-        if (userId !== todo.user.id) {
-            throw new Error("You don't have access to this Todo");
-        }
-        await this.todoRepository.delete(id);
+    async removeTodo(id: string): Promise<Boolean> {
+        const { affected } = await this.todoRepository.delete(id);
+        if (affected && affected > 0) return true;
+        return false;
     }
 
     // Need to make sure FK to logged in user is added in
@@ -61,7 +59,7 @@ export class TodoService {
 
     // Function to complete Todo
     async todoCompleted(id: string, userId: string): Promise<Todo> {
-        const todo = await this.todoRepository.findOne(id);
+        const todo = await this.todoRepository.findOne({ where: id });
         if(userId !== todo.user.id) {
             throw new Error("You do not have access to this Todo");
         }

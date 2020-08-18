@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+    show?: boolean
+}
+
 export const DashboardPageDiv = styled.div`
     background-color: ${props => props.theme.colors.grey};
     display: grid;

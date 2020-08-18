@@ -57,13 +57,12 @@ export class TodoResolver {
     }
     
     // Works but need to respond back with deleted Todo or success message
-    @Mutation(returns => CreateTodoDto)
+    @Mutation(returns => Boolean)
     @UseGuards(GqlAuthGuard)
     async deleteTodo(
         @Args('id') id: string,
-        @CurrentUser() user: User
     ) {
-        await this.todoService.removeTodo(id, user.id);
+        return this.todoService.removeTodo(id);
     }
 
     // Add update Todo, need to verify with logged in user

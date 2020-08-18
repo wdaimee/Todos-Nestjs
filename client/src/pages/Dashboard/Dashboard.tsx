@@ -22,7 +22,7 @@ const LoggedInUser_Query = gql`
 `;
 
 // Query to get todos for logged in user
-const TodoList_Query = gql`
+export const TodoList_Query = gql`
     query TodosList {
         allTodos {
             id,
@@ -54,17 +54,28 @@ const DashboardPage: React.FC<any> = props => {
     // useEffect to pull todosList
     useEffect(() => {
         if(todosListData) {
-            setTodosList([...todosList, todosListData.allTodos])
+            setTodosList(todosListData.allTodos)
         }
     }, [todosListData]);
 
     return(
         <DashboardPageDiv>
             <Header>Home</Header>
-            <div>
-                {loadingTodos ? <h1>Loading Todos</h1> : <Card title="some title" status="open" body="some notes"/>}
-                <Modal type="add" show={show} setShow={setShow}/>
-            </div>
+            <Modal type="add" show={show} setShow={setShow}/>
+            { show ? null : 
+                <div>
+                    {todosList ? todosList.map((todo: Todo) => (
+                        <Card key={todo.id}
+                            id={todo.id} 
+                            title={todo.title}
+                            body={todo.body}
+                            dueDate={todo.dueDate}
+                            dateCompleted={todo.dateCompleted}
+                            status={todo.status}
+                        />
+                    )) : <h1>No Todos</h1>}
+                </div>
+            }
             <NavbarMobile setShow={setShow}/>
         </DashboardPageDiv>
     )
