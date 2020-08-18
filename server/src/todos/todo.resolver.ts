@@ -4,7 +4,7 @@ import { Todo } from './todo.entity';
 import { User } from '../user/user.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoService } from './todo.service';
-import { InputTodo, DateCompletedTodo } from './input/todo.input';
+import { InputTodo } from './input/todo.input';
 import { GqlAuthGuard } from '../auth/local-auth-guard';
 import { CurrentUser } from '../user/CurrentUser.decorator';
 
@@ -12,11 +12,18 @@ import { CurrentUser } from '../user/CurrentUser.decorator';
 export class TodoResolver {
     constructor (private readonly todoService: TodoService) {}
 
-    // Find all todo's for a user by date
+    // Find all todo's for a user
     @Query(() => [ CreateTodoDto ])
     @UseGuards(GqlAuthGuard)
     async allTodos(@CurrentUser() user: User) {
         return this.todoService.findAllTodos(user);
+    }
+
+    // Find all todo's for a user with due date greater than or equal to today
+    @Query(() => [ CreateTodoDto ])
+    @UseGuards(GqlAuthGuard)
+    async allTodosToday(@CurrentUser() user: User) {
+        return this.todoService.findAllTodosToday(user);
     }
 
     // Find all open Todos for a user
@@ -55,7 +62,7 @@ export class TodoResolver {
         return this.todoService.changeStatus(id)
     }
     
-    // Works but need to respond back with deleted Todo or success message
+    // Function to delete Todo
     @Mutation(returns => Boolean)
     @UseGuards(GqlAuthGuard)
     async deleteTodo(

@@ -9,8 +9,3 @@ export class InputTodo {
     @Field({ nullable: true }) readonly status?: string;
     @Field({ nullable: true }) readonly dateCreated?: Date;
 }
-
-@InputType()
-export class DateCompletedTodo {
-    @Field() readonly dateCompleted: string;
-}

@@ -68,6 +68,7 @@ type Query {
   currentLoggedInUser: CreateUserDto!
   verifyToken(accessToken: String!): Boolean!
   allTodos: [CreateTodoDto!]!
+  allTodosToday: [CreateTodoDto!]!
   allOpenTodos: [CreateTodoDto!]!
   todo(id: String!): CreateTodoDto!
 }
