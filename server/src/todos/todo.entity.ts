@@ -9,7 +9,7 @@ export class Todo {
     @Column('varchar', {length: 100, unique: true})
     title: string;
 
-    @Column('varchar', {length: 500, unique: true})
+    @Column('varchar', {length: 500})
     body: string;
 
     @CreateDateColumn({type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})

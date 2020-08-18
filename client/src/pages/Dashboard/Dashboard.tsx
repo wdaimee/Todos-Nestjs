@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { DashboardPageDiv } from './Dashboard.styles';
+import { DashboardPageDiv, MainContDiv } from './Dashboard.styles';
 import Header from '../../components/Header/Header';
 import NavbarMobile from '../../components/Navbar-Mobile/Navbar-Mobile';
 import { Modal } from '../../components/Modal/Modal';
@@ -63,7 +63,8 @@ const DashboardPage: React.FC<any> = props => {
             <Header>Home</Header>
             <Modal type="add" show={show} setShow={setShow}/>
             { show ? null : 
-                <div>
+                <MainContDiv>
+                    {loadingTodos ? <h1>Loading Todos</h1> : null}
                     {todosList ? todosList.map((todo: Todo) => (
                         <Card key={todo.id}
                             id={todo.id} 
@@ -74,7 +75,7 @@ const DashboardPage: React.FC<any> = props => {
                             status={todo.status}
                         />
                     )) : <h1>No Todos</h1>}
-                </div>
+                </MainContDiv>
             }
             <NavbarMobile setShow={setShow}/>
         </DashboardPageDiv>

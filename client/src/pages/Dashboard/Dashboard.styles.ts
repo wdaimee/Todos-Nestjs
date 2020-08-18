@@ -13,3 +13,7 @@ export const DashboardPageDiv = styled.div`
         grid-template-rows: 6% 1fr;
     }
 `;
+
+export const MainContDiv = styled.div`
+    overflow-y: scroll;
+`;
