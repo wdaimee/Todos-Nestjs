@@ -46,14 +46,13 @@ export class TodoResolver {
         return this.todoService.createTodo(data, user);
     }
 
-    // Add function for completing Todo
+    // Add function to change status of Todo, complete to open, open to complete
     @Mutation(() => CreateTodoDto) 
     @UseGuards(GqlAuthGuard)
-    async todoCompleted(
+    async changeStatus(
         @Args('id') id: string,
-        @CurrentUser() user: User
     ) {
-        return this.todoService.todoCompleted(id, user.id)
+        return this.todoService.changeStatus(id)
     }
     
     // Works but need to respond back with deleted Todo or success message

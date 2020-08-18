@@ -56,7 +56,7 @@ type Mutation {
   createUser(data: InputUser!): LoginOutput!
   login(data: InputLogin!): LoginOutput!
   createTodo(data: InputTodo!): CreateTodoDto!
-  todoCompleted(id: String!): CreateTodoDto!
+  changeStatus(id: String!): CreateTodoDto!
   deleteTodo(id: String!): Boolean!
   updateTodo(data: InputTodo!, id: String!): CreateTodoDto!
 }

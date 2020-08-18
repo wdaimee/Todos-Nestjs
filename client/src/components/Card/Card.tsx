@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainDiv, CircleButton, StyledIcon, IconDiv, ContentDiv, StyledHeader, StyledNotes, StyledDate } from './Card.styles';
+import { MainDiv, CircleButton, StyledIcon, IconDiv, StyledHeader, StyledNotes, StyledDate, StyledCheckIcon } from './Card.styles';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { TodoList_Query } from '../../pages/Dashboard/Dashboard';
@@ -20,6 +20,14 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         }
     `);
 
+    const [changeTodoStatus, { data: todoStatus }] = useMutation(gql`
+        mutation ChangeTodoStatus($id: String!) {
+            changeStatus(id: $id) {
+                id
+            }
+        }
+    `); 
+
     const handleDelete = async (e: any) => {
         try {
             await deleteTodo({
@@ -31,15 +39,24 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         }
     }
 
+    const handleStatusChange = async (e: any) => {
+        try {
+            await changeTodoStatus({
+                variables: { id },
+                refetchQueries: [{ query: TodoList_Query }]
+            })
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
     return(
         <MainDiv status={status}>
-            {status === 'open' ? <CircleButton /> : <StyledIcon icon="checkCircleIcon" size="1.6rem" color="black"/>}
-            <ContentDiv>
-                <StyledHeader>{title}</StyledHeader>
-                <StyledNotes>{body}</StyledNotes>
-                <StyledDate>{dueDate}</StyledDate>
-                <StyledDate>{dateCompleted}</StyledDate>
-            </ContentDiv>
+            {status === 'open' ? <CircleButton onClick={handleStatusChange}/> : <StyledCheckIcon icon="checkCircleIcon" size="2.0rem" color="black" onClick={handleStatusChange}/>}
+            <StyledHeader status={status}>{title.toUpperCase()}</StyledHeader>
+            <StyledNotes status={status}>{body}</StyledNotes>
+            <StyledDate>Due: {dueDate?.substr(0, dueDate.indexOf("T"))}</StyledDate>
+            {dateCompleted ? <StyledDate>Complete: {dateCompleted?.substr(0, dateCompleted.indexOf("T"))}</StyledDate> : null}
             <IconDiv>
                 <StyledIcon icon="editIcon" size="2.0rem" color="black" />
                 <StyledIcon icon="deleteIcon" size="2.0rem" color="error" onClick={handleDelete}/>

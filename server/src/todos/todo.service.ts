@@ -57,15 +57,17 @@ export class TodoService {
         return todo;
     }
 
-    // Function to complete Todo
-    async todoCompleted(id: string, userId: string): Promise<Todo> {
-        const todo = await this.todoRepository.findOne({ where: id });
-        if(userId !== todo.user.id) {
-            throw new Error("You do not have access to this Todo");
+    // Function to change status of Todo
+    async changeStatus(id: string): Promise<Todo> {
+        const todo = await this.todoRepository.findOne(id);
+        if (todo.status === 'open') {
+            todo.dateCompleted = new Date().toISOString();
+            todo.status = 'complete';
+        } else if (todo.status === 'complete') {
+            todo.dateCompleted = null;
+            todo.status = 'open';
         }
-        todo.dateCompleted = new Date().toISOString();
-        todo.status = 'complete';
-
+    
         await this.todoRepository.save(todo);
 
         return todo;

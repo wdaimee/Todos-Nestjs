@@ -13,9 +13,8 @@ export const MainDiv = styled.div<Props>`
     margin-bottom: 10px;
     background-color: ${props => props.status === 'open' ? props.theme.colors.cadetGrey : props.theme.colors.darkGrey};
     display: grid;
-    grid-template-columns: 12% 1fr 20%;
-    grid-template-rows: 1fr;
-
+    grid-template-columns: 12% 1fr 1fr 20%;
+    grid-template-rows: 1.2rem 1fr 1.2rem;
 `;
 
 export const CircleButton = styled.div`
@@ -24,6 +23,7 @@ export const CircleButton = styled.div`
     border: 2px solid ${props => props.theme.colors.black};
     border-radius: 50%;
     background-color: ${props => props.theme.colors.grey};
+    grid-row-start: 2;
     place-self: center;
     &:hover {
         cursor: pointer
@@ -34,6 +34,8 @@ export const IconDiv = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    grid-row-start: 2;
+    grid-column-start: 4;
 `;
 
 export const StyledIcon = styled(Icon)`
@@ -43,23 +45,26 @@ export const StyledIcon = styled(Icon)`
     }
 `;
 
-export const ContentDiv = styled.div`
-    display: grid; 
-    grid-template-rows: 1.2rem 1fr 1.2rem;
-    grid-template-columns: 1fr 1fr;
+export const StyledCheckIcon = styled(StyledIcon)`
+    grid-row-start: 2;
 `;
 
-export const StyledHeader = styled.h1`
+export const StyledHeader = styled.h1<Props>`
     font-size: 1.0rem;
-    place-self: center;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    text-decoration: ${({ status }) => status === 'complete' ? 'line-through' : 'none'};  
+    color: ${props => props.status === 'complete' ? props.theme.colors.greyedOut : props.theme.colors.black};
+    justify-self: start;
+    align-self: center;
+    grid-column-start: 2;
+    grid-column-end: 4;
 `;
 
-export const StyledNotes = styled.p`
+export const StyledNotes = styled.p<Props>`
     font-size: 1.0rem;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    text-decoration: ${({ status }) => status === 'complete' ? 'line-through' : 'none'};
+    color: ${props => props.status === 'complete' ? props.theme.colors.greyedOut : props.theme.colors.black};
+    grid-column-start: 2;
+    grid-column-end: 4;
     margin: 0;
     justify-self: start;
 `;
@@ -67,5 +72,6 @@ export const StyledNotes = styled.p`
 export const StyledDate = styled.p`
     font-size: 1.0rem;
     margin: 0;
-    justify-self: start;
+    justify-self: center;
+    grid-column-end: span 2;
 `;

@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components';
 
 export type Color = 
     'indigo' | 'prussianBlue' | 'oxfordBlue' | 'cadetGrey' | 'mintCream' | 
-    'black' | 'white' | 'success' | 'error' | 'grey';
+    'black' | 'white' | 'success' | 'error' | 'grey' | 'darkGrey' | 'greyedOut';
 
 declare module 'styled-components' {
     export interface DefaultTheme {
@@ -17,7 +17,8 @@ declare module 'styled-components' {
             success: string,
             error: string,
             grey: string,
-            darkGrey: string
+            darkGrey: string,
+            greyedOut: string
         }
     }
 }
@@ -34,6 +35,7 @@ export const theme: DefaultTheme = {
         success: '#20BF55',
         error: 'red',
         grey: '#c4c4c4',
-        darkGrey: '#b7b7b7'
+        darkGrey: '#b7b7b7',
+        greyedOut: '#808080'
     }
 }

@@ -63,6 +63,7 @@ const DashboardPage: React.FC<any> = props => {
             <Modal type="add" show={show} setShow={setShow}/>
             { show ? null : 
                 <MainContDiv>
+                    <p>All Your Upcoming Todos:</p>
                     {loadingTodos ? <h1>Loading Todos</h1> : null}
                     {todosList ? todosList.map((todo: Todo) => (
                         <Card key={todo.id}
