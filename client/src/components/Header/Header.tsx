@@ -2,10 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-    background-color: ${props => props.theme.colors.indigo};
+    background-color: ${props => props.theme.colors.oxfordBlue};
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (min-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
 `;
 
 const Paragraph = styled.p`

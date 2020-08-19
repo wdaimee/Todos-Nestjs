@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NavbarMobileDiv, IconHolderDiv, StyledIcon, StyledP } from './Navbar-mobile.styles';
+import { NavbarDiv, IconHolderDiv, StyledIcon, StyledP } from './Navbar.styles';
 import { deleteToken } from '../../localStorage';
 import { History } from 'history';
 
@@ -9,14 +9,14 @@ export interface NavbarProps {
     history: History
 }
 
-const NavbarMobile: React.FC<NavbarProps> = props => {
+const Navbar: React.FC<NavbarProps> = props => {
     const logout = () => {
         deleteToken();
         props.history.push('login');
     }
 
     return(
-        <NavbarMobileDiv>
+        <NavbarDiv>
             <Link to="/dashboard">
                 <IconHolderDiv>
                     <StyledIcon icon="homeIcon" size="2.5rem" color="mintCream"/>
@@ -41,8 +41,8 @@ const NavbarMobile: React.FC<NavbarProps> = props => {
                 <StyledIcon icon="logoutIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>logout</StyledP>
             </IconHolderDiv>
-        </NavbarMobileDiv>
+        </NavbarDiv>
     )
 }
 
-export default NavbarMobile
+export default Navbar;

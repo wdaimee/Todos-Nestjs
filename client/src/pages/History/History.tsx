@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { DashboardPageDiv, MainContDiv } from '../Dashboard/Dashboard.styles';
 import Header from '../../components/Header/Header';
-import NavbarMobile from '../../components/Navbar-Mobile/Navbar-Mobile';
+import Navbar from '../../components/Navbar/Navbar';
 import { Modal } from '../../components/Modal/Modal';
 import { Todo } from '../../types';
 import { Card } from '../../components/Card/Card';
@@ -56,7 +56,7 @@ const HistoryPage: React.FC<any> = props => {
                     )) : <h1>No Todos</h1>}
                 </MainContDiv>
             }
-            <NavbarMobile setShow={setShow} history={props.history}/>
+            <Navbar setShow={setShow} history={props.history}/>
         </DashboardPageDiv>
     )
 };
