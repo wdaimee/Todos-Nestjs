@@ -3,6 +3,7 @@ import LoginPage from '../Log In/LogIn';
 import SignUpPage from '../Sign Up/SignUp';
 import Footer from '../../components/Footer/Footer';
 import DashBoardPage from '../Dashboard/Dashboard';
+import HistoryPage from '../History/History';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
@@ -23,6 +24,9 @@ function App() {
           } />
           <Route exact path="/dashboard" render={({ history }) => 
             <DashBoardPage history={history} setUser={setUser}/>
+          } />
+          <Route exact path="/history" render={({ history }) => 
+            <HistoryPage history={history} />
           } />
           <Route path="/*" render={() => 
             <div className="error">

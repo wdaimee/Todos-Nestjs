@@ -3,6 +3,7 @@ import { MainDiv, CircleButton, StyledIcon, IconDiv, StyledHeader, StyledNotes, 
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { TodoList_Query } from '../../pages/Dashboard/Dashboard';
+import { AllTodoList_Query } from '../../pages/History/History';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     id: string;
@@ -32,7 +33,7 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         try {
             await deleteTodo({
                 variables: { id },
-                refetchQueries: [{ query: TodoList_Query }]
+                refetchQueries: [{ query: TodoList_Query}, { query: AllTodoList_Query }]
             })
         } catch(e) {
             return
@@ -43,7 +44,7 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         try {
             await changeTodoStatus({
                 variables: { id },
-                refetchQueries: [{ query: TodoList_Query }]
+                refetchQueries: [{ query: TodoList_Query}, { query: AllTodoList_Query }]
             })
         } catch(e) {
             console.log(e)

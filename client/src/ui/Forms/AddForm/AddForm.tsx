@@ -5,6 +5,7 @@ import { getGQLError } from '../../../index';
 import { Header, Label, Input, ButtonDiv, StyledButton } from './AddForm.styes';
 import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
 import { TodoList_Query } from '../../../pages/Dashboard/Dashboard';
+import { AllTodoList_Query } from '../../../pages/History/History';
 
 export interface AddFormProps {
     setShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,7 +45,7 @@ export const AddForm: React.FC<AddFormProps> = ({ setShow }) => {
         try {
             const { data } = await addTodo({
                 variables: { title: addTodoDetails.title, body: addTodoDetails.notes, dueDate: addTodoDetails.dueDate },
-                refetchQueries: [{ query: TodoList_Query }]
+                refetchQueries: [{ query: TodoList_Query}, { query: AllTodoList_Query }]
             });
             if(data && data.createTodo) {
                 setShow(false);

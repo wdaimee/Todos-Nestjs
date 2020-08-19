@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { NavbarMobileDiv, IconHolderDiv, StyledIcon, StyledP } from './Navbar-mobile.styles';
 import { deleteToken } from '../../localStorage';
 import { History } from 'history';
@@ -16,14 +17,18 @@ const NavbarMobile: React.FC<NavbarProps> = props => {
 
     return(
         <NavbarMobileDiv>
-            <IconHolderDiv>
-                <StyledIcon icon="homeIcon" size="2.5rem" color="mintCream"/>
-                <StyledP>home</StyledP>
-            </IconHolderDiv>
-            <IconHolderDiv>
-                <StyledIcon icon="historyIcon" size="2.5rem" color="mintCream"/>
-                <StyledP>history</StyledP>
-            </IconHolderDiv>
+            <Link to="/dashboard">
+                <IconHolderDiv>
+                    <StyledIcon icon="homeIcon" size="2.5rem" color="mintCream"/>
+                    <StyledP>home</StyledP>
+                </IconHolderDiv>
+            </Link>
+            <Link to="/history">
+                <IconHolderDiv>
+                    <StyledIcon icon="historyIcon" size="2.5rem" color="mintCream"/>
+                    <StyledP>history</StyledP>
+                </IconHolderDiv>
+            </Link>
             <IconHolderDiv onClick={e => props.setShow(true)}>
                 <StyledIcon icon="addIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>add</StyledP>
