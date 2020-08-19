@@ -16,6 +16,12 @@ export const MainDiv = styled.div<Props>`
     display: grid;
     grid-template-columns: 12% 1fr 1fr 20%;
     grid-template-rows: 1.2rem 1fr 1.2rem;
+    @media (min-width: 768px) {
+        width: 99%;
+        margin-left: 5px;
+        margin-right: 5px;
+        height: 7.0rem;
+    }
 `;
 
 export const CircleButton = styled.div`
@@ -38,12 +44,18 @@ export const IconDiv = styled.div`
     justify-content: space-around;
     grid-row-start: 2;
     grid-column-start: 4;
+    @media (min-width: 768px) {
+        justify-content: center;
+    }
 `;
 
 export const StyledIcon = styled(Icon)`
     place-self: center;
     &:hover {
         cursor: pointer
+    }
+    @media (min-width: 768px) {
+        margin-left: 1rem;
     }
 `;
 
@@ -71,6 +83,10 @@ export const StyledNotes = styled.p<Props>`
     grid-column-end: 4;
     margin: 0;
     justify-self: start;
+    overflow-Y: hidden;
+    @media (min-width: 768px) {
+        margin-top: 0.5rem;
+    }
 `;
 
 export const StyledDate = styled.p<Props>`
