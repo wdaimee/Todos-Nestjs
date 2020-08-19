@@ -1,14 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Icon } from '../../ui/Icon/Icon';
+
+const StyledIcon = styled(Icon)`
+    margin-right: 5px;
+`;
 
 const Div = styled.div`
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
     background-color: ${props => props.theme.colors.oxfordBlue};
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    @media (min-width: 768px) {
-        grid-column-start: 2;
-        grid-column-end: 3;
+    
+    @media (max-width: 768px) {
+        display: none;
     }
 `;
 
@@ -20,12 +30,13 @@ const Paragraph = styled.p`
     font-weight: bold;
 `;
 
-const Header: React.FC<any> = ({ children }) => (
+const Logo: React.FC<any> = () => (
     <>    
         <Div>
-            <Paragraph>{children}</Paragraph>
+            <StyledIcon icon="logoIcon" size="1.6rem" color="mintCream" />
+            <Paragraph>Todos!</Paragraph>
         </Div>
     </>
 );
 
-export default Header;
+export default Logo;

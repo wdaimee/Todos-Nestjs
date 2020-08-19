@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import { Modal } from '../../components/Modal/Modal';
 import { Todo } from '../../types';
 import { Card } from '../../components/Card/Card';
+import Logo from '../../components/Logo/Logo';
 
 // Query to get logged in user and update state
 export const LoggedInUser_Query = gql`
@@ -59,7 +60,9 @@ const DashboardPage: React.FC<any> = props => {
 
     return(
         <DashboardPageDiv>
+
             <Header>Home</Header>
+            <Logo />
             <Modal type="add" show={show} setShow={setShow}/>
             { show ? null : 
                 <MainContDiv>

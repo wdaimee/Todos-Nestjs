@@ -9,6 +9,7 @@ import { Delete } from './Icons/delete';
 import { DeleteShadow } from './Icons/delete-shadow';
 import { CheckCircle } from './Icons/check_circle';
 import { Logout } from './Icons/logout';
+import { Logo } from './Icons/logo';
 
 export const icons = {
     addIcon: Add,
@@ -21,5 +22,6 @@ export const icons = {
     deleteIcon: Delete,
     deleteShadowIcon: DeleteShadow,
     checkCircleIcon: CheckCircle,
-    logoutIcon: Logout
+    logoutIcon: Logout,
+    logoIcon: Logo
 };

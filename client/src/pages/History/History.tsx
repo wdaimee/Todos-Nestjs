@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { DashboardPageDiv, MainContDiv } from '../Dashboard/Dashboard.styles';
 import Header from '../../components/Header/Header';
 import Navbar from '../../components/Navbar/Navbar';
+import Logo from '../../components/Logo/Logo';
 import { Modal } from '../../components/Modal/Modal';
 import { Todo } from '../../types';
 import { Card } from '../../components/Card/Card';
@@ -38,6 +39,7 @@ const HistoryPage: React.FC<any> = props => {
 
     return(
         <DashboardPageDiv>
+            <Logo />
             <Header>History</Header>
             <Modal type="add" show={show} setShow={setShow}/>
             { show ? null : 

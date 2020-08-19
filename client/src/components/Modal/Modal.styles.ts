@@ -19,6 +19,14 @@ export const ModalDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media (min-width: 768px) {
+        height: 40%;
+        width: 60%;
+    }
+    @media (min-width: 1025px) {
+        height: 65%;
+        width: 50%;
+    }
 `;
 
 export const StyledClearIcon = styled(Icon)`

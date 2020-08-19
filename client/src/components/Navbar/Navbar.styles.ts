@@ -33,6 +33,7 @@ export const StyledIcon = styled(Icon)`
 
 export const StyledP = styled.p`
     color: ${({ theme }) => theme.colors.mintCream};
+    text-decoration: none;
     font-size: 0.8rem;
     margin: 0;
     place-self: center;
