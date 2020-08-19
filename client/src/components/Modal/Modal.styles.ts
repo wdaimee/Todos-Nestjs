@@ -19,8 +19,8 @@ export const ModalDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media (min-width: 768px) {
-        height: 40%;
+    @media (min-width: 767px) {
+        height: 50%;
         width: 60%;
     }
     @media (min-width: 1025px) {

@@ -4,7 +4,7 @@ export const EditShadow: React.FC<{className?: string}> = props => <svg {...prop
     <defs>
        <filter id="filter1" x="0" y="0">
            <feOffset result="offOut" in="SourceAlpha" dx="0" dy="3" />
-           <feFlood flood-color="#808080" />
+           <feFlood floodColor="#808080" />
            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
        </filter>

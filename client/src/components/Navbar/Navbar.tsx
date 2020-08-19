@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NavbarDiv, IconHolderDiv, StyledIcon, StyledP } from './Navbar.styles';
+import { NavbarDiv, IconHolderDiv, StyledIcon, StyledP, StyledNameDiv } from './Navbar.styles';
 import { deleteToken } from '../../localStorage';
 import { History } from 'history';
+import { User } from '../../types';
 
 export interface NavbarProps {
     setShow: React.Dispatch<React.SetStateAction<boolean>>,
-    history: History
+    history: History,
+    user: User
 }
 
 const Navbar: React.FC<NavbarProps> = props => {
@@ -41,6 +43,16 @@ const Navbar: React.FC<NavbarProps> = props => {
                 <StyledIcon icon="logoutIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>logout</StyledP>
             </IconHolderDiv>
+            <StyledNameDiv>
+                {props.user ? 
+                    <>
+                        <StyledP>{props.user.firstName} {props.user.lastName}</StyledP> 
+                        <StyledP>{props.user.email}</StyledP>
+                    </>
+                    : 
+                    null
+                }
+            </StyledNameDiv>
         </NavbarDiv>
     )
 }

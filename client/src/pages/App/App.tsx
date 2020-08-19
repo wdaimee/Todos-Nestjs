@@ -23,10 +23,10 @@ function App() {
             <SignUpPage history={history}/>
           } />
           <Route exact path="/dashboard" render={({ history }) => 
-            <DashBoardPage history={history} setUser={setUser}/>
+            <DashBoardPage history={history} setUser={setUser} user={user}/>
           } />
           <Route exact path="/history" render={({ history }) => 
-            <HistoryPage history={history} />
+            <HistoryPage history={history} user={user}/>
           } />
           <Route path="/*" render={() => 
             <div className="error">

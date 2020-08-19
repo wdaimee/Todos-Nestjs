@@ -40,3 +40,13 @@ export const StyledP = styled.p`
     font-weight: bold;
     text-transform: uppercase;
 `;
+
+export const StyledNameDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    @media (max-width: 768px) {
+        display: none;
+    }
+`;

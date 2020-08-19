@@ -80,7 +80,7 @@ const DashboardPage: React.FC<any> = props => {
                     )) : <h1>No Todos</h1>}
                 </MainContDiv>
             }
-            <Navbar setShow={setShow} history={props.history}/>
+            <Navbar setShow={setShow} history={props.history} user={props.user} />
         </DashboardPageDiv>
     )
 };
