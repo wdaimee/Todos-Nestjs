@@ -7,7 +7,7 @@ import { LoginPageDiv,
          CenteredDiv, 
          BackgroundAsideDiv 
         } from './Login.styles';
-import { LoginButton } from '../../ui/Buttons/Login Button/LoginButton';
+import { Button } from '../../ui/Buttons/Button/Button';
 import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
 import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
@@ -93,11 +93,11 @@ const LoginPage: React.FC<any> = (props) => {
                     <Label>Password:</Label>
                     <Input value={loginDetails.password} name="password" type="password" onChange={handleChange}/>
                     </div>
-                    <LoginButton color="success" onClick={handleSubmit}>Log In</LoginButton>
+                    <Button size="14rem" color="success" onClick={handleSubmit}>Log In</Button>
                     <div style={{position: "relative", top: "10px"}}>
                         <Paragraph>Just want to checkout how things work? Log in as a guest</Paragraph>
                     </div>
-                    <LoginButton color="cadetGrey" onClick={handleLoginGuest}>Log In as Guest</LoginButton>
+                    <Button size="14rem" color="cadetGrey" onClick={handleLoginGuest}>Log In as Guest</Button>
                 </CenteredDiv>
             </MainContentDiv>
             <BackgroundAsideDiv />

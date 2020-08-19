@@ -3,12 +3,16 @@ import { StyledButton } from './Button.styles';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     color: 'success' | 'cadetGrey',
+    size?: string
 }
 
 export const Button: React.FC<ButtonProps> = ({
     color,
-    children
+    size,
+    children,
+    onClick,
+    className
 }) => 
-    <StyledButton color={color}>
+    <StyledButton className={className} color={color} onClick={onClick} size={size}>
         {children}
     </StyledButton>;

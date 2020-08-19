@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { MainContentDiv, BackgroundAsideDiv, CenteredDiv, Label } from '../Log In/Login.styles';
+import { Button } from '../../ui/Buttons/Button/Button';
 
 
 export const SignUpMainDiv = styled(MainContentDiv)`
@@ -27,4 +28,9 @@ export const SignUpCentered = styled(CenteredDiv)`
 export const SignUpLabel = styled(Label)`
     right: 0;
     text-align: start;
+`;
+
+export const StyledButton = styled(Button)`
+    position: relative;
+    top: 10px;
 `;

@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { getGQLError } from '../../../index';
-import { Header, Label, Input, ButtonDiv } from './AddForm.styes';
-import { AddTodoButton } from '../../Buttons/AddTodo Button/AddTodoButton';
+import { Header, Label, Input, ButtonDiv, StyledButton } from './AddForm.styes';
 import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
 import { TodoList_Query } from '../../../pages/Dashboard/Dashboard';
 
@@ -73,12 +72,12 @@ export const AddForm: React.FC<AddFormProps> = ({ setShow }) => {
                 </Label>
                 <Input type="date" name="dueDate" value={addTodoDetails.dueDate} onChange={handleChange} />
                 <ButtonDiv>
-                    <AddTodoButton color="success" onClick={e => handleSubmit}>
+                    <StyledButton size="6.5rem" color="success" onClick={e => handleSubmit}>
                         ADD
-                    </AddTodoButton>
-                    <AddTodoButton color="cadetGrey" onClick={e => setShow(false)}>
+                    </StyledButton>
+                    <StyledButton size="6.5rem" color="cadetGrey" onClick={e => setShow(false)}>
                         CANCEL
-                    </AddTodoButton>
+                    </StyledButton>
                 </ButtonDiv>
             </form>
         </>

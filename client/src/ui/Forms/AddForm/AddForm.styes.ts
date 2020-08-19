@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../../Buttons/Button/Button';
 
 export const Header = styled.h1`
     margin: 0;
@@ -33,4 +34,8 @@ export const ButtonDiv = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+`;
+
+export const StyledButton = styled(Button)`
+    display: inline-block;
 `;

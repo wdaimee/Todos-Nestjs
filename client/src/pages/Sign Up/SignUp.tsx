@@ -3,9 +3,9 @@ import { LoginPageDiv, Header, Paragraph, Input } from '../Log In/Login.styles';
 import { SignUpMainDiv, 
          SignUpBackground, 
          SignUpCentered, 
-         SignUpLabel, 
+         SignUpLabel,
+         StyledButton
         } from './SignUp.styles';
-import { SignUpButton } from '../../ui/Buttons/SignUp Button/SignUpButton';
 import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { getGQLError } from '../../index';
@@ -114,7 +114,7 @@ const SignUpPage: React.FC<any> = (props) => {
                             <Input value={signUpDetails.firstName} name="firstName" type="text" onChange={handleChange}/>
                             <SignUpLabel>Last Name:</SignUpLabel>
                             <Input value={signUpDetails.lastName} name="lastName" type="text" onChange={handleChange}/>
-                            <SignUpButton color="success" onClick={handleSubmit}>Sign Up</SignUpButton>
+                            <StyledButton size="14rem" color="success" onClick={handleSubmit}>Sign Up</StyledButton>
                         </div>
                     </SignUpCentered>
                 </SignUpMainDiv>
