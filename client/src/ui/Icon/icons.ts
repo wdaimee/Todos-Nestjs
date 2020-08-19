@@ -4,7 +4,9 @@ import { History } from './Icons/history-24px';
 import { Profile } from './Icons/profile';
 import { Clear } from './Icons/clear';
 import { Edit } from './Icons/edit-24px';
+import { EditShadow } from './Icons/edit-shadow';
 import { Delete } from './Icons/delete';
+import { DeleteShadow } from './Icons/delete-shadow';
 import { CheckCircle } from './Icons/check_circle';
 import { Logout } from './Icons/logout';
 
@@ -15,7 +17,9 @@ export const icons = {
     profileIcon: Profile,
     clearIcon: Clear,
     editIcon: Edit,
+    editShadowIcon: EditShadow,
     deleteIcon: Delete,
+    deleteShadowIcon: DeleteShadow,
     checkCircleIcon: CheckCircle,
     logoutIcon: Logout
 };

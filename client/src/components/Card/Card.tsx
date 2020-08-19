@@ -58,8 +58,12 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
             <StyledDate status={status}>Due: {dueDate?.substr(0, dueDate.indexOf("T"))}</StyledDate>
             {dateCompleted ? <StyledDate>Complete: {dateCompleted?.substr(0, dateCompleted.indexOf("T"))}</StyledDate> : null}
             <IconDiv>
-                <StyledIcon icon="editIcon" size="2.0rem" color="black" />
-                <StyledIcon icon="deleteIcon" size="2.0rem" color="error" onClick={handleDelete}/>
+                {status === 'open' ? <StyledIcon icon="editShadowIcon" size="2.0rem" color="black" /> 
+                    : 
+                <StyledIcon icon="editIcon" size="2.0rem" color="black" />}
+                {status === 'open' ? <StyledIcon icon="deleteShadowIcon" size="2.0rem" color="error" onClick={handleDelete}/> 
+                    : 
+                <StyledIcon icon="deleteIcon" size="2.0rem" color="error" onClick={handleDelete}/>}
             </IconDiv>
         </MainDiv>
     );
