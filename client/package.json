@@ -53,5 +53,6 @@
     "find-up": "^4.1.0",
     "jest-puppeteer": "^4.4.0",
     "puppeteer": "^5.2.1"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
