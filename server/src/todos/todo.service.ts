@@ -49,7 +49,14 @@ export class TodoService {
     // Need to make sure FK to logged in user is added in
     async createTodo(data: InputTodo, user: User): Promise<Todo> {
         const foundTodo = await this.todoRepository.findOne({ where: { user, title: data.title } });
+        // Throw an error if a title is being reused
         if (foundTodo) throw new Error("This title already exists");
+        // If a title and due date are not provided, throw an error
+        if (!data.title && !data.dueDate) throw new Error("Title and due date are required");
+        // Throw an error if no title submitted
+        if (!data.title) throw new Error("A title is required");
+        // Throw an error if no date provided
+        if (!data.dueDate) throw new Error("A due date is required");
 
         const todo = new Todo();
         todo.title = data.title;
