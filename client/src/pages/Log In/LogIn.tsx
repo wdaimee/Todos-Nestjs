@@ -51,7 +51,7 @@ const LoginPage: React.FC<any> = (props) => {
             // Redirect user to dashboard page
             props.history.push('/dashboard');
         } catch(e) {
-            return
+            console.log(e);
         }
     };
 
