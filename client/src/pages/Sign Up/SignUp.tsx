@@ -10,7 +10,7 @@ import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
-import { saveToken } from '../../localStorage';
+import { saveToken, getUserFromToken } from '../../localStorage';
 import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
 
 export const pageTransition = {
@@ -76,6 +76,9 @@ const SignUpPage: React.FC<any> = (props) => {
         if (data && data.createUser) {
             saveToken(data.createUser.accessToken);
         }
+        // Set user state when user logs in
+        let user = getUserFromToken();
+        props.setUser(user);
         // Redirect user to dashboard page
         props.history.push('/dashboard');
         } catch(e) {

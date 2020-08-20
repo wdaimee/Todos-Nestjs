@@ -37,7 +37,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network Error]: ${networkError}`)
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: errorLink.concat(authLink.concat(httpLink)),
   cache: new InMemoryCache()
 });

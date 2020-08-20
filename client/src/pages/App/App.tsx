@@ -29,19 +29,19 @@ function App() {
             user ? 
               <DashBoardPage history={history} user={user} />
                 :
-              <LoginPage history={history} />  
+              <LoginPage history={history} setUser={setUser} />  
           )} />
           <Route exact path="/login" render={({ history }) => 
-            <LoginPage history={history}/>
+            <LoginPage history={history} setUser={setUser} />
           } />
           <Route exact path="/signup" render={({ history }) => 
-            <SignUpPage history={history}/>
+            <SignUpPage history={history} setUser={setUser} />
           } />
           <PrivateRoute exact path="/dashboard" component={(props: any) => 
-            <DashBoardPage history={props.history} user={user}/>
+            <DashBoardPage history={props.history} user={user} />
           } />
           <PrivateRoute exact path="/history" component={(props: any) => 
-            <HistoryPage history={props.history} user={user}/>
+            <HistoryPage history={props.history} user={user} />
           } />
           <Route path="/*" render={() => 
             <div className="error">

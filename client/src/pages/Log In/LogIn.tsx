@@ -13,7 +13,7 @@ import { StyledLink } from '../../ui/Link/Link.styles';
 import gql from 'graphql-tag';
 import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
-import { saveToken } from '../../localStorage';
+import { saveToken, getUserFromToken } from '../../localStorage';
 import { pageTransition } from '../Sign Up/SignUp';
 
 const LoginPage: React.FC<any> = (props) => {
@@ -48,6 +48,9 @@ const LoginPage: React.FC<any> = (props) => {
             if (data && data.login) {
                 saveToken(data.login.accessToken);
             }
+            // Set user state when user logs in
+            let user = getUserFromToken();
+            props.setUser(user);
             // Redirect user to dashboard page
             props.history.push('/dashboard');
         } catch(e) {
@@ -64,6 +67,9 @@ const LoginPage: React.FC<any> = (props) => {
         if (data && data.login) {
             saveToken(data.login.accessToken);
         }
+        // Set user state when user logs in
+        let user = getUserFromToken();
+        props.setUser(user);
         // Redirect user to dashboard page
         props.history.push('/dashboard');
     }

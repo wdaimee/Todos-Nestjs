@@ -4,6 +4,7 @@ import { NavbarDiv, IconHolderDiv, StyledIcon, StyledP, StyledNameDiv } from './
 import { deleteToken } from '../../localStorage';
 import { History } from 'history';
 import { User } from '../../types';
+import { client } from '../../index';
 
 export interface NavbarProps {
     setShow: React.Dispatch<React.SetStateAction<boolean>>,
@@ -14,6 +15,7 @@ export interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = props => {
     const logout = () => {
         deleteToken();
+        client.clearStore();
         props.history.push('login');
     }
 
