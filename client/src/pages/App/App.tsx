@@ -8,9 +8,10 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
 import { User } from '../../types';
+import { getUserFromToken } from '../../localStorage';
 
 function App() {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>(getUserFromToken());
 
   return (
     <div className="App">
@@ -23,7 +24,7 @@ function App() {
             <SignUpPage history={history}/>
           } />
           <Route exact path="/dashboard" render={({ history }) => 
-            <DashBoardPage history={history} setUser={setUser} user={user}/>
+            <DashBoardPage history={history} user={user}/>
           } />
           <Route exact path="/history" render={({ history }) => 
             <HistoryPage history={history} user={user}/>

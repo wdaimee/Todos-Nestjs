@@ -9,19 +9,6 @@ import { Todo } from '../../types';
 import { Card } from '../../components/Card/Card';
 import Logo from '../../components/Logo/Logo';
 
-// Query to get logged in user and update state
-export const LoggedInUser_Query = gql`
-    query LoggedInUser {
-        currentLoggedInUser {
-            id,
-            username,
-            email,
-            firstName,
-            lastName
-        }
-    }
-`;
-
 // Query to get todos for logged in user
 export const TodoList_Query = gql`
     query TodosList {
@@ -38,18 +25,10 @@ export const TodoList_Query = gql`
 `;
 
 const DashboardPage: React.FC<any> = props => {
-    const { loading, error, data: loggedInUser } = useQuery(LoggedInUser_Query);
     const { loading: loadingTodos, data: todosListData } = useQuery(TodoList_Query);
     const [todosList, setTodosList] = useState<Todo[]>([]);
     // Show Modal for Adding Todo
     const [show, setShow] = useState<boolean>(false);
-
-    // useEffect to set Logged In User
-    useEffect(() => {
-        if(loggedInUser) {
-            props.setUser(loggedInUser.currentLoggedInUser);
-        }
-    }, [loggedInUser]);
 
     // useEffect to pull todosList
     useEffect(() => {
