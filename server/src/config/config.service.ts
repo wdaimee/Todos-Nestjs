@@ -44,7 +44,12 @@ class ConfigService {
                 cli: {
                     migrationsDir: 'dist/src/migration',
                 },
-                ssl: this.isProduction()
+                ssl: this.isProduction(),
+                extra: {
+                    ssl: {
+                        rejectUnauthorized: true
+                    }
+                }
             } 
         } else {
             return {
