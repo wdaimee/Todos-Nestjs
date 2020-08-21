@@ -20,6 +20,7 @@ export const NavbarDiv = styled.div`
 
 export const IconHolderDiv = styled.div`
     display: grid;
+    height: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
     @media (min-width: 768px) {
