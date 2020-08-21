@@ -44,7 +44,7 @@ class ConfigService {
                 cli: {
                     migrationsDir: 'dist/src/migration',
                 },
-                ssl: { rejectUnauthorized: true }
+                ssl: { rejectUnauthorized: false }
             } 
         } else {
             return {
