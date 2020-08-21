@@ -1,7 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 import { findEnv } from '../../find-env';
-import { Todo } from '../../dist/src/todos/todo.entity';
-import { User } from '../../dist/src/user/user.entity';
 
 require('dotenv').config({ path: findEnv() });
 
@@ -38,7 +37,7 @@ class ConfigService {
                 url: this.getValue('DATABASE_URL'),
                 synchronize: false,
                 logging: true,
-                entities: [User, Todo],
+                entities: [join(__dirname, '/../**/**.entity{.ts,.js}')],
                 migrationsTableName: 'migration',
     
                 migrations: ['dist/src/migration/*.ts'],
