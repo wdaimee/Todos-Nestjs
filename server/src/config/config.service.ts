@@ -1,9 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { findEnv } from '../../find-env';
 
-// require('dotenv').config({ path: findEnv() });
-
-require('dotenv').config();
+require('dotenv').config({ path: findEnv() });
 
 class ConfigService {
     constructor(private env: { [k: string]: string | undefined }) { }
@@ -31,25 +29,44 @@ class ConfigService {
     }
 
     public getTypeOrmConfig(): TypeOrmModuleOptions {
-        return {
-            type: 'postgres',
-
-            host: this.getValue('POSTGRES_HOST'),
-            port: parseInt(this.getValue('POSTGRES_PORT')),
-            username: this.getValue('POSTGRES_USER'),
-            password: this.getValue('POSTGRES_PASSWORD'),
-            database: this.getValue('POSTGRES_DATABASE'),
-
-            entities: ['**/*.entity{.ts,.js}'],
-
-            migrationsTableName: 'migration',
-
-            migrations: ['src/migration/*.ts'],
-
-            cli: {
-                migrationsDir: 'src/migration',
-            },
-            ssl: this.isProduction()
+        if (this.isProduction() === true) {
+            return {
+                name: 'default',
+                type: 'postgres',
+                url: this.getValue('DATABASE_URL'),
+                synchronize: false,
+                logging: true,
+                entities: ['**/*.entity{.ts, .js}'],
+                migrationsTableName: 'migration',
+    
+                migrations: ['src/migration/*.ts'],
+    
+                cli: {
+                    migrationsDir: 'src/migration',
+                },
+                ssl: this.isProduction()
+            } 
+        } else {
+            return {
+                type: 'postgres',
+    
+                host: this.getValue('POSTGRES_HOST'),
+                port: parseInt(this.getValue('POSTGRES_PORT')),
+                username: this.getValue('POSTGRES_USER'),
+                password: this.getValue('POSTGRES_PASSWORD'),
+                database: this.getValue('POSTGRES_DATABASE'),
+    
+                entities: ['**/*.entity{.ts,.js}'],
+    
+                migrationsTableName: 'migration',
+    
+                migrations: ['src/migration/*.ts'],
+    
+                cli: {
+                    migrationsDir: 'src/migration',
+                },
+                ssl: this.isProduction()
+            }
         }
     }
 }
