@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { resolve } from 'path';
+import { join } from 'path';
 
 @Injectable()
 export class ServeHTMLMiddleware implements NestMiddleware {
@@ -10,6 +10,6 @@ export class ServeHTMLMiddleware implements NestMiddleware {
         }
     
         // send react index.html
-        res.sendFile(resolve(__dirname, 'client', 'build', 'index.html'));
+        res.sendFile(join(process.cwd(), '../client/build/index.html'));
     }
 }
