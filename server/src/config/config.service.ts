@@ -1,7 +1,9 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { findEnv } from '../../find-env';
 
-require('dotenv').config({ path: findEnv() });
+// require('dotenv').config({ path: findEnv() });
+
+require('dotenv').config();
 
 class ConfigService {
     constructor(private env: { [k: string]: string | undefined }) { }
@@ -47,12 +49,7 @@ class ConfigService {
             cli: {
                 migrationsDir: 'src/migration',
             },
-            ssl: true,
-            extra: {
-                ssl: {
-                    rejectUnauthorized: false
-                }
-            }
+            ssl: this.isProduction()
         }
     }
 }
