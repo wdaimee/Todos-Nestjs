@@ -10,6 +10,6 @@ export class ServeHTMLMiddleware implements NestMiddleware {
         }
     
         // send react index.html
-        res.sendFile(join(process.cwd(), '../../client/dist/index.html'));
+        res.sendFile(join(process.cwd(), '../../client/build/index.html'));
     }
 }
