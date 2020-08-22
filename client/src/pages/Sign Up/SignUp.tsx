@@ -97,11 +97,11 @@ const SignUpPage: React.FC<any> = (props) => {
             >
                 <SignUpBackground />
                 <SignUpMainDiv>
+                    {signUpMutError && <ErrorMessage error={signUpMutError} />}
                     <LogoDiv>
                         <Logo />
                     </LogoDiv>
                     <SignUpCentered>
-                        {signUpMutError && <ErrorMessage error={signUpMutError} />}
                         <Header>Sign Up</Header>
                         <div style={{position: "relative", bottom: "10px"}}>
                             <Paragraph>Already have an account? <StyledLink to="/login">Click here to log in</StyledLink></Paragraph>

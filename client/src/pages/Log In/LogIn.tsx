@@ -84,11 +84,11 @@ const LoginPage: React.FC<any> = (props) => {
             variants={pageTransition}
         >
             <MainContentDiv>
+                {mutationError && <ErrorMessage error={mutationError} />}
                 <LogoDiv>
                     <Logo />
                 </LogoDiv>
                 <CenteredDiv>
-                    {mutationError && <ErrorMessage error={mutationError} />}
                     <Header>Login</Header>
                     <div style={{position: "relative", bottom: "30px"}}>
                         <Paragraph>Don't have an account? <StyledLink to="/signup">Create an Account</StyledLink></Paragraph>
