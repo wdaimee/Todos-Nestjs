@@ -54,6 +54,7 @@ type LoginOutput {
 
 type Mutation {
   createUser(data: InputUser!): LoginOutput!
+  deleteUser(id: String!): Boolean!
   login(data: InputLogin!): LoginOutput!
   createTodo(data: InputTodo!): CreateTodoDto!
   changeStatus(id: String!): CreateTodoDto!

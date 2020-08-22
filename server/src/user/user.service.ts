@@ -26,8 +26,11 @@ export class UserService {
     }
 
     // Should only be useable by an admin TODO: Create and Admin Guard
-    async remove(id: string): Promise<void> {
-        await this.userRepository.delete(id);
+    // Delete a specific user
+    async removeUser(id: string): Promise<Boolean> {
+        const { affected } = await this.userRepository.delete(id);
+        if (affected && affected > 0) return true;
+        return false;
     }
 
     async createUser(data: CreateUserDto): Promise<User> {
@@ -36,6 +39,13 @@ export class UserService {
 
         if (foundUserEmail) throw new Error("Email has already been taken");
         if (foundUsername) throw new Error("This username has already been taken")
+
+        // Errors if user has not provided sign up details
+        if (!data.username) throw new Error("A username is required");
+        if (!data.email) throw new Error("An email is required");
+        if (!data.password) throw new Error("A password is required");
+        if (!data.firstName) throw new Error("First name is required");
+        if (!data.lastName) throw new Error("Last name is required");
 
         const user = new User();
         user.username = data.username;

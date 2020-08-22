@@ -47,4 +47,13 @@ export class UserResolver {
         const newUser = await this.userService.createUser(data);
         return this.authService.login(newUser);
     }
+
+     // Function to delete Todo
+     @Mutation(returns => Boolean)
+     @UseGuards(GqlAuthGuard)
+     async deleteUser(
+         @Args('id') id: string,
+     ) {
+         return this.userService.removeUser(id);
+     }
 }
