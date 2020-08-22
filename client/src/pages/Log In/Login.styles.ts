@@ -18,6 +18,7 @@ export const MainContentDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-Y: scroll;
 `;
 
 export const Header = styled.h1`
