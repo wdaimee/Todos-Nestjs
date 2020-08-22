@@ -19,6 +19,7 @@ export const ModalDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-Y: scroll;
     @media (min-width: 767px) {
         height: 50%;
         width: 60%;
