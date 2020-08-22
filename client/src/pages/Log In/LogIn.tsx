@@ -5,7 +5,8 @@ import { LoginPageDiv,
          Label, Input, 
          Header, 
          CenteredDiv, 
-         BackgroundAsideDiv 
+         BackgroundAsideDiv, 
+         LogoDiv 
         } from './Login.styles';
 import { Button } from '../../ui/Buttons/Button/Button';
 import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
@@ -15,6 +16,7 @@ import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
 import { saveToken, getUserFromToken } from '../../localStorage';
 import { pageTransition } from '../Sign Up/SignUp';
+import Logo from '../../components/Logo/Logo';
 
 const LoginPage: React.FC<any> = (props) => {
     const [loginDetails, setLoginDetails] = useState({
@@ -82,8 +84,11 @@ const LoginPage: React.FC<any> = (props) => {
             variants={pageTransition}
         >
             <MainContentDiv>
-                {mutationError && <ErrorMessage error={mutationError} />}
+                <LogoDiv>
+                    <Logo />
+                </LogoDiv>
                 <CenteredDiv>
+                    {mutationError && <ErrorMessage error={mutationError} />}
                     <Header>Login</Header>
                     <div style={{position: "relative", bottom: "30px"}}>
                         <Paragraph>Don't have an account? <StyledLink to="/signup">Create an Account</StyledLink></Paragraph>

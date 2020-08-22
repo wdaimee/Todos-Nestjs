@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { DashboardPageDiv, MainContDiv } from './Dashboard.styles';
+import { DashboardPageDiv, MainContDiv, LogoDiv } from './Dashboard.styles';
 import Header from '../../components/Header/Header';
 import Navbar from '../../components/Navbar/Navbar';
 import { Modal } from '../../components/Modal/Modal';
@@ -39,9 +39,10 @@ const DashboardPage: React.FC<any> = props => {
 
     return(
         <DashboardPageDiv>
-
+            <LogoDiv>
+                <Logo />
+            </LogoDiv>
             <Header>Home</Header>
-            <Logo />
             <Modal type="add" show={show} setShow={setShow}/>
             { show ? null : 
                 <MainContDiv>

@@ -4,9 +4,9 @@ import { Button } from '../../ui/Buttons/Button/Button';
 
 
 export const SignUpMainDiv = styled(MainContentDiv)`
-@media (min-width: 768px) {
-    grid-column-start: 2;
-}
+    @media (min-width: 768px) {
+        grid-column-start: 2;
+    }
 `;
 
 export const SignUpBackground = styled(BackgroundAsideDiv)`
@@ -21,7 +21,7 @@ export const SignUpBackground = styled(BackgroundAsideDiv)`
 `;
 
 export const SignUpCentered = styled(CenteredDiv)`
-    height: 37.5rem;
+    height: 35rem;
     justify-content: center;
 `;
 

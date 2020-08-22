@@ -71,3 +71,10 @@ export const BackgroundAsideDiv = styled.div`
     }
 `;
 
+export const LogoDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`;
+

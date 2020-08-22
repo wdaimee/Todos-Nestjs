@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LoginPageDiv, Header, Paragraph, Input } from '../Log In/Login.styles';
+import { LoginPageDiv, Header, Paragraph, Input, LogoDiv } from '../Log In/Login.styles';
 import { SignUpMainDiv, 
          SignUpBackground, 
          SignUpCentered, 
@@ -12,6 +12,7 @@ import { getGQLError } from '../../index';
 import { useMutation } from '@apollo/react-hooks';
 import { saveToken, getUserFromToken } from '../../localStorage';
 import { ErrorMessage } from '../../ui/ErrorMessage/ErrorMessage';
+import Logo from '../../components/Logo/Logo';
 
 export const pageTransition = {
     in: {
@@ -96,6 +97,9 @@ const SignUpPage: React.FC<any> = (props) => {
             >
                 <SignUpBackground />
                 <SignUpMainDiv>
+                    <LogoDiv>
+                        <Logo />
+                    </LogoDiv>
                     <SignUpCentered>
                         {signUpMutError && <ErrorMessage error={signUpMutError} />}
                         <Header>Sign Up</Header>
