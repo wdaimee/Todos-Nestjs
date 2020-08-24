@@ -36,6 +36,11 @@ function App() {
     dueDate: ''
   });
 
+  // Update page tab title to "Todos!" when app mounts
+  useEffect(() => {
+    document.title = "Todos!"
+  }, []);
+
   // Set user state on initial load if user logged in
   useEffect(() => {
     let currentLoggedInUser = getUserFromToken();
