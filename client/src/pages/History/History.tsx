@@ -25,8 +25,6 @@ export const AllTodoList_Query = gql`
 const HistoryPage: React.FC<any> = props => {
     const { loading: loadingTodos, data: allTodosListData } = useQuery(AllTodoList_Query);
     const [todosList, setTodosList] = useState<Todo[]>([]);
-    // Show Modal for Adding Todo
-    const [show, setShow] = useState<boolean>(false);
 
     // useEffect to pull todosList
     useEffect(() => {
@@ -39,7 +37,11 @@ const HistoryPage: React.FC<any> = props => {
         <>
             <Header>History</Header>
             <Modal type="add" show={props.show} setShow={props.setShow}/>
-            { props.show ? null : 
+            <Modal type="edit" showEditModal={props.showEditModal} 
+                               setShowEditModal={props.setShowEditModal} 
+                               editTodoDetails={props.editTodoDetails}
+            />
+            { props.show || props.showEditModal ? null : 
                 <MainContDiv>
                     <p>History of Your Todos:</p>
                     {loadingTodos ? <h1>Loading Todos</h1> : 
@@ -51,6 +53,8 @@ const HistoryPage: React.FC<any> = props => {
                                 dueDate={todo.dueDate}
                                 dateCompleted={todo.dateCompleted}
                                 status={todo.status}
+                                setEditTodoDetails={props.setEditTodoDetails}
+                                setShowEditModal={props.setShowEditModal}
                             />
                         )) : <h1>No Todos</h1>}
                 </MainContDiv>

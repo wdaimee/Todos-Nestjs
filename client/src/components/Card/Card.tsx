@@ -6,15 +6,22 @@ import { TodoList_Query } from '../../pages/Dashboard/Dashboard';
 import { AllTodoList_Query } from '../../pages/History/History';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-    id: string;
+    id?: string;
     title: string;
     body?: string;
     dueDate?: string;
     dateCompleted?: string | null;
     status: string;
+    setEditTodoDetails: React.Dispatch<React.SetStateAction<{
+        id?: string;
+        title?: string;
+        notes?: string;
+        dueDate?: string;
+    }>>;
+    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateCompleted, status}) => {
+export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateCompleted, status, setEditTodoDetails, setShowEditModal }) => {
     // Mutation for deleting a Todo
     const [deleteTodo, { data, error, loading}] = useMutation(gql`
         mutation DeleteTodo($id: String!) {
@@ -43,6 +50,17 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         }
     }
 
+    // Function to handle the edit button click
+    const handleEdit = (e: any) => {
+        setEditTodoDetails({
+            id,
+            title,
+            notes: body,
+            dueDate
+        });
+        setShowEditModal(true);
+    }
+
     // Function to handle changing the status of a todo, refetch the Todo List queries once complete
     const handleStatusChange = async (e: any) => {
         try {
@@ -63,12 +81,12 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
             <StyledDate status={status}>Due: {dueDate?.substr(0, dueDate.indexOf("T"))}</StyledDate>
             {dateCompleted ? <StyledDate>Complete: {dateCompleted?.substr(0, dateCompleted.indexOf("T"))}</StyledDate> : null}
             <IconDiv>
-                {status === 'open' ? <StyledIcon icon="editShadowIcon" size="2.0rem" color="black" /> 
+                {status === 'open' ? <StyledIcon icon="editShadowIcon" size="2.0rem" color="black" onClick={handleEdit} /> 
                     : 
-                <StyledIcon icon="editIcon" size="2.0rem" color="black" />}
-                {status === 'open' ? <StyledIcon icon="deleteShadowIcon" size="2.0rem" color="error" onClick={handleDelete}/> 
+                <StyledIcon icon="editIcon" size="2.0rem" color="black" onClick={handleEdit} />}
+                {status === 'open' ? <StyledIcon icon="deleteShadowIcon" size="2.0rem" color="error" onClick={handleDelete} /> 
                     : 
-                <StyledIcon icon="deleteIcon" size="2.0rem" color="error" onClick={handleDelete}/>}
+                <StyledIcon icon="deleteIcon" size="2.0rem" color="error" onClick={handleDelete} />}
             </IconDiv>
         </MainDiv>
     );

@@ -11,11 +11,30 @@ import { AnimatePresence } from 'framer-motion';
 import { User } from '../../types';
 import { getUserFromToken } from '../../localStorage';
 
+export interface EditState {
+  id?: string;
+  title?: string;
+  notes?: string;
+  dueDate?: string;
+}
+
 function App() {
+  // Logged in user state
   const [user, setUser] = useState<User>();
 
   // Show Modal for Adding Todo
   const [show, setShow] = useState<boolean>(false);
+
+  // Show Modal for Editing Todo
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
+
+  // State to edit Todo
+  const [editTodoDetails, setEditTodoDetails] = useState<EditState>({
+    id: '',
+    title: '',
+    notes: '',
+    dueDate: ''
+  });
 
   // Set user state on initial load if user logged in
   useEffect(() => {
@@ -41,9 +60,13 @@ function App() {
           <Route exact path="/signup" render={({ history }) => 
             <SignUpPage history={history} setUser={setUser} />
           } />
-          <PrivateRoute exact path="/dashboard" component={DashBoardPage} show={show} user={user} setShow={setShow}
+          <PrivateRoute exact path="/dashboard" component={DashBoardPage} 
+            show={show} user={user} setShow={setShow} editTodoDetails={editTodoDetails} setEditTodoDetails={setEditTodoDetails}
+            showEditModal={showEditModal} setShowEditModal={setShowEditModal}
           />
-          <PrivateRoute exact path="/history" component={HistoryPage} show={show} user={user} setShow={setShow}
+          <PrivateRoute exact path="/history" component={HistoryPage} 
+            show={show} user={user} setShow={setShow} editTodoDetails={editTodoDetails} setEditTodoDetails={setEditTodoDetails}
+            showEditModal={showEditModal} setShowEditModal={setShowEditModal}
           />
           <Route path="/*" render={() => 
             <div className="error">

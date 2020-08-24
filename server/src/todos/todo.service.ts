@@ -87,11 +87,13 @@ export class TodoService {
     }
 
     // Update Todo
-    async updateTodo(id: string, data: InputTodo, userId: string): Promise<Todo> {
+    async updateTodo(id: string, data: InputTodo): Promise<Todo> {
         const todo = await this.todoRepository.findOne(id);
-        if (userId !== todo.user.id) {
-            throw new Error("You do not have access to this Todo");
-        }
+        // update the dueDate of the todo to an ISOString and save it
+        todo.dueDate = new Date(data.dueDate).toISOString();
+        // remove the dueDate from the data object and save the todo in database
+        // with other data that might be changed
+        delete data.dueDate;
         return this.todoRepository.save({
             ...todo,
             ...data

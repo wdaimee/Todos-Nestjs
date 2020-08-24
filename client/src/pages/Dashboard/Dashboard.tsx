@@ -36,8 +36,12 @@ const DashboardPage: React.FC<any> = props => {
     return(
         <>
             <Header>Home</Header>
-            <Modal type="add" show={props.show} setShow={props.setShow}/>
-            { props.show ? null : 
+            <Modal type="add" show={props.show} setShow={props.setShow} />
+            <Modal type="edit" showEditModal={props.showEditModal} 
+                               setShowEditModal={props.setShowEditModal} 
+                               editTodoDetails={props.editTodoDetails} 
+            />
+            { props.show || props.showEditModal ? null : 
                 <MainContDiv>
                     <p>All Your Upcoming Todos:</p>
                     {loadingTodos ? <h1>Loading Todos</h1> : 
@@ -49,6 +53,8 @@ const DashboardPage: React.FC<any> = props => {
                                 dueDate={todo.dueDate}
                                 dateCompleted={todo.dateCompleted}
                                 status={todo.status}
+                                setEditTodoDetails={props.setEditTodoDetails}
+                                setShowEditModal={props.setShowEditModal}
                             />
                         )) : <h1>No Todos</h1>}
                 </MainContDiv>

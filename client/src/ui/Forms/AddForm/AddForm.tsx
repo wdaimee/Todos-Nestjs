@@ -8,7 +8,7 @@ import { TodoList_Query } from '../../../pages/Dashboard/Dashboard';
 import { AllTodoList_Query } from '../../../pages/History/History';
 
 export interface AddFormProps {
-    setShow: React.Dispatch<React.SetStateAction<boolean>>;
+    setShow?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AddForm: React.FC<AddFormProps> = ({ setShow }) => {
@@ -47,7 +47,7 @@ export const AddForm: React.FC<AddFormProps> = ({ setShow }) => {
                 variables: { title: addTodoDetails.title, body: addTodoDetails.notes, dueDate: addTodoDetails.dueDate },
                 refetchQueries: [{ query: TodoList_Query}, { query: AllTodoList_Query }]
             });
-            if(data && data.createTodo) {
+            if(data && data.createTodo && setShow) {
                 setShow(false);
             } 
         } catch(e) {
@@ -76,7 +76,7 @@ export const AddForm: React.FC<AddFormProps> = ({ setShow }) => {
                     <StyledButton size="6.5rem" color="success" onClick={e => handleSubmit}>
                         ADD
                     </StyledButton>
-                    <StyledButton size="6.5rem" color="cadetGrey" onClick={e => setShow(false)}>
+                    <StyledButton size="6.5rem" color="cadetGrey" onClick={e => setShow ? setShow(false) : null}>
                         CANCEL
                     </StyledButton>
                 </ButtonDiv>

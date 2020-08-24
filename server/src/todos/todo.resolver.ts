@@ -77,8 +77,7 @@ export class TodoResolver {
     async updateTodo(
         @Args('id') id: string,
         @Args('data') data: InputTodo,
-        @CurrentUser() user: User
     ) {
-        return this.todoService.updateTodo(id, data, user.id);
+        return this.todoService.updateTodo(id, data);
     }
 }

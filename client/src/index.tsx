@@ -16,9 +16,9 @@ import { getToken } from './localStorage';
 
 const httpLink = createHttpLink({
   //For development
-  // uri: 'http://localhost:3001/graphql'
+  uri: 'http://localhost:3001/graphql'
   // For production
-  uri: '/graphql'
+  // uri: '/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
