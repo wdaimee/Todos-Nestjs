@@ -55,7 +55,10 @@ function App() {
         <Switch>
           <Route exact path="/" render={({ history }) => (
             user ? 
-              <DashBoardPage history={history} user={user} />
+              <PrivateRoute component={DashBoardPage} 
+              show={show} user={user} setShow={setShow} editTodoDetails={editTodoDetails} setEditTodoDetails={setEditTodoDetails}
+              showEditModal={showEditModal} setShowEditModal={setShowEditModal}
+              />
                 :
               <LoginPage history={history} setUser={setUser} />  
           )} />
