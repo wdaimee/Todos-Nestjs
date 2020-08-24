@@ -15,12 +15,14 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 };
 
 export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateCompleted, status}) => {
+    // Mutation for deleting a Todo
     const [deleteTodo, { data, error, loading}] = useMutation(gql`
         mutation DeleteTodo($id: String!) {
             deleteTodo(id: $id)
         }
     `);
 
+    // Mutation for changing the status of a todo from open to close, close to open
     const [changeTodoStatus, { data: todoStatus }] = useMutation(gql`
         mutation ChangeTodoStatus($id: String!) {
             changeStatus(id: $id) {
@@ -29,6 +31,7 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         }
     `); 
 
+    // Function to handle deleting a todo, refetch the Todo List queries once complete
     const handleDelete = async (e: any) => {
         try {
             await deleteTodo({
@@ -40,6 +43,7 @@ export const Card: React.FC<CardProps> = ({ id, title, body, dueDate, dateComple
         }
     }
 
+    // Function to handle changing the status of a todo, refetch the Todo List queries once complete
     const handleStatusChange = async (e: any) => {
         try {
             await changeTodoStatus({
