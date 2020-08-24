@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { getUserFromToken } from '../../localStorage';
 import { Redirect, Route } from 'react-router-dom';
+import { LogoDiv } from '../../pages/Dashboard/Dashboard.styles';
+import Logo from '../../components/Logo/Logo';
+import Navbar from '../../components/Navbar/Navbar';
+import Page from '../../components/Page/Page';
 
 // Private route, only accessible by a logged in user
 const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
@@ -11,7 +15,13 @@ const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
             {...rest}
             render={props => 
                 isLoggedIn ? (
-                    <Component {...props} />
+                    <Page>
+                        <LogoDiv>
+                            <Logo />
+                        </LogoDiv>
+                        <Component {...props} {...rest} />
+                        <Navbar  history={props.history} {...rest} />
+                    </Page>
                 ) : (
                     <Redirect to={{ pathname: '/login', state: { from: props.location }}} />
                 )

@@ -15,10 +15,10 @@ import { theme } from './css/theme';
 import { getToken } from './localStorage';
 
 const httpLink = createHttpLink({
-  // //For development
-  // uri: 'http://localhost:3001/graphql'
+  //For development
+  uri: 'http://localhost:3001/graphql'
   // For production
-  uri: '/graphql'
+  // uri: '/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {

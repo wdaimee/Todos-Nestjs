@@ -12,11 +12,11 @@ export interface NavbarProps {
     user: User
 }
 
-const Navbar: React.FC<NavbarProps> = props => {
+const Navbar: React.FC<NavbarProps> = ({ history, setShow, user }) => {
     const logout = () => {
         deleteToken();
         client.clearStore();
-        props.history.push('login');
+        history.push('login');
     }
 
     return(
@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = props => {
                     <StyledP>history</StyledP>
                 </IconHolderDiv>
             </Link>
-            <IconHolderDiv onClick={e => props.setShow(true)}>
+            <IconHolderDiv onClick={e => setShow(true)}>
                 <StyledIcon icon="addIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>add</StyledP>
             </IconHolderDiv>
@@ -46,10 +46,10 @@ const Navbar: React.FC<NavbarProps> = props => {
                 <StyledP>logout</StyledP>
             </IconHolderDiv>
             <StyledNameDiv>
-                {props.user ? 
+                {user ? 
                     <>
-                        <StyledP>{props.user.firstName} {props.user.lastName}</StyledP> 
-                        <StyledP>{props.user.email}</StyledP>
+                        <StyledP>{user.firstName} {user.lastName}</StyledP> 
+                        <StyledP>{user.email}</StyledP>
                     </>
                     : 
                     null

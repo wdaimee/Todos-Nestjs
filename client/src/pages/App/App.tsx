@@ -14,6 +14,9 @@ import { getUserFromToken } from '../../localStorage';
 function App() {
   const [user, setUser] = useState<User>();
 
+  // Show Modal for Adding Todo
+  const [show, setShow] = useState<boolean>(false);
+
   // Set user state on initial load if user logged in
   useEffect(() => {
     let currentLoggedInUser = getUserFromToken();
@@ -38,12 +41,10 @@ function App() {
           <Route exact path="/signup" render={({ history }) => 
             <SignUpPage history={history} setUser={setUser} />
           } />
-          <PrivateRoute exact path="/dashboard" component={(props: any) => 
-            <DashBoardPage history={props.history} user={user} />
-          } />
-          <PrivateRoute exact path="/history" component={(props: any) => 
-            <HistoryPage history={props.history} user={user} />
-          } />
+          <PrivateRoute exact path="/dashboard" component={DashBoardPage} show={show} user={user} setShow={setShow}
+          />
+          <PrivateRoute exact path="/history" component={HistoryPage} show={show} user={user} setShow={setShow}
+          />
           <Route path="/*" render={() => 
             <div className="error">
               <h2>404</h2>
