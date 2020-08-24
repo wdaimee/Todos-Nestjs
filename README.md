@@ -4,6 +4,9 @@
 
 Todos app is a Fullstack app which allows users to build a list of todos. User's will be able to perform CRUD operations on their list of Todos; add a todo, add a due date for the todo, update the due date, add a completed date, or delete a todo. Authorization and login will be used with JSON Web Token (JWT) authorization. 
 
+## Checkout the App:
+[https://afternoon-wave-77442.herokuapp.com/](https://afternoon-wave-77442.herokuapp.com/)
+
 ## Planning:
 - View user stories on Trello:
   - [User Stories](https://trello.com/b/pZ6TOfwo/todo-nest-react-graphql)
