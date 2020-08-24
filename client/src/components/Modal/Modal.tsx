@@ -14,6 +14,7 @@ export interface ModalProps extends React.HTMLProps<HTMLElement> {
 export const Modal: React.FC<ModalProps> = ({ show, type, setShow }) => {
     return(
         <>
+            {/* Show Modal if show state is true else show nothing */}
             { show ? 
                 <BackgroundDiv>
                     <ModalDiv>
@@ -23,6 +24,7 @@ export const Modal: React.FC<ModalProps> = ({ show, type, setShow }) => {
                             color="cadetGrey"
                             onClick={e => setShow(false)} 
                         />
+                        {/* If type is equal to 'add' populate addform into modal */}
                         { type === "add" ? 
                             <AddForm setShow={setShow}/> 
                             :
