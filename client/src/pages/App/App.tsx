@@ -14,6 +14,7 @@ import { getUserFromToken } from '../../localStorage';
 function App() {
   const [user, setUser] = useState<User>();
 
+  // Set user state on initial load if user logged in
   useEffect(() => {
     let currentLoggedInUser = getUserFromToken();
     if (currentLoggedInUser) {
