@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ history, setShow, user }) => {
                 <StyledP>profile</StyledP>
             </IconHolderDiv>
             <IconHolderDiv onClick={logout}>
-                <StyledIcon icon="logoutIcon" size="2.5rem" color="mintCream"/>
+                <StyledIcon icon="logoutIcon" size="2.1rem" color="mintCream"/>
                 <StyledP>logout</StyledP>
             </IconHolderDiv>
             <StyledNameDiv>
