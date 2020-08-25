@@ -17,6 +17,7 @@ Todos app is a Fullstack app which allows users to build a list of todos. This a
 
 ## List of Technologies Used for Fullstack Project:
 - Backend/API:
+  - TypeScript
   - Nest.js
   - PostgreSQL
   - TypeORM
@@ -25,6 +26,7 @@ Todos app is a Fullstack app which allows users to build a list of todos. This a
 
 - Frontend
   - React.js
+  - TypeScript
   - GraphQL Apollo Client
 
 ## Screenshots:
