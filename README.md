@@ -2,7 +2,7 @@
 
 ## About:
 
-Todos app is a Fullstack app which allows users to build a list of todos. User's will be able to perform CRUD operations on their list of Todos; add a todo, add a due date for the todo, update the due date, add a completed date, or delete a todo. Authorization and login will be used with JSON Web Token (JWT) authorization. 
+Todos app is a Fullstack app which allows users to build a list of todos. This app was built and designed as a mobile first app. User's will be able to perform CRUD operations on their list of Todos; add a todo, add a due date for the todo, update the due date, add a completed date, or delete a todo. Authorization and login will be used with JSON Web Token (JWT) authorization. 
 
 ## Checkout the App:
 [https://afternoon-wave-77442.herokuapp.com/](https://afternoon-wave-77442.herokuapp.com/)
@@ -30,12 +30,28 @@ Todos app is a Fullstack app which allows users to build a list of todos. User's
 ## Screenshots:
 
 ### Login:
-![Imgur](https://i.imgur.com/uQFBOoV.png)
+![Imgur](https://i.imgur.com/05huhLa.png)
 ### Sign Up:
-![Imgur](https://i.imgur.com/gp2t3KA.png)
+![Imgur](https://i.imgur.com/OsIZc5Y.png)
+### Home:
+![Imgur](https://i.imgur.com/DQIpxUF.png)
+### History:
+![Imgur](https://i.imgur.com/NtBLa1R.png)
+### Add Todo Modal:
+![Imgur](https://i.imgur.com/YFV5pkI.png)
+### Edit Modal:
+![Imgur](https://i.imgur.com/Axd0FD0.png)
 ## Screenshots for Mobile Site:
 
 ### Login:
-![Imgur](https://i.imgur.com/LHkfy7d.png)
+![Imgur](https://i.imgur.com/0FptTnd.png)
 ### Sign Up: 
-![Imgur](https://i.imgur.com/R8t23uE.png)
+![Imgur](https://i.imgur.com/KiEQSi2.png)
+### Home:
+![Imgur](https://i.imgur.com/6sHJzjs.png)
+### History:
+![Imgur](https://i.imgur.com/Opdf2jn.png)
+### Add Todo Modal:
+![Imgur](https://i.imgur.com/Tqi7nSe.png)
+### Edit Modal:
+![Imgur](https://i.imgur.com/MQQhCNy.png)
