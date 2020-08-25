@@ -13,7 +13,7 @@ export const SignUpBackground = styled(BackgroundAsideDiv)`
     display: none;
     @media (min-width: 768px) {
         display: inline;
-        background: url("https://i.imgur.com/wR8DzvN.jpg");
+        background: url("https://i.imgur.com/Ix3KA09.jpg");
         background-size: cover;
         grid-column-start: 1;
         grid-column-end: 2;
