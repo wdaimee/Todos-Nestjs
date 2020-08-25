@@ -10,6 +10,7 @@ type CreateTodoDto {
   dueDate: String!
   dateCompleted: String
   status: String!
+  UserId: String!
 }
 
 type CreateUserDto {

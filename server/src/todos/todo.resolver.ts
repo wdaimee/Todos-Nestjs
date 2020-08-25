@@ -58,8 +58,9 @@ export class TodoResolver {
     @UseGuards(GqlAuthGuard)
     async changeStatus(
         @Args('id') id: string,
+        @CurrentUser() user: User
     ) {
-        return this.todoService.changeStatus(id)
+        return this.todoService.changeStatus(id, user.id)
     }
     
     // Function to delete Todo
@@ -67,8 +68,9 @@ export class TodoResolver {
     @UseGuards(GqlAuthGuard)
     async deleteTodo(
         @Args('id') id: string,
+        @CurrentUser() user: User
     ) {
-        return this.todoService.removeTodo(id);
+        return this.todoService.removeTodo(id, user.id);
     }
 
     // Add update Todo, need to verify with logged in user
@@ -77,7 +79,8 @@ export class TodoResolver {
     async updateTodo(
         @Args('id') id: string,
         @Args('data') data: InputTodo,
+        @CurrentUser() user: User
     ) {
-        return this.todoService.updateTodo(id, data);
+        return this.todoService.updateTodo(id, data, user.id);
     }
 }

@@ -9,6 +9,7 @@ export class CreateTodoDto {
     @Field() readonly dueDate: string;
     @Field({ nullable: true }) readonly dateCompleted?: string;
     @Field() readonly status?: string;
+    @Field() readonly UserId: string;
 }
 
 @ObjectType()

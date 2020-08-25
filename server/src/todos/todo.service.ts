@@ -40,7 +40,9 @@ export class TodoService {
     } 
 
     // Delete a specific Todo
-    async removeTodo(id: string): Promise<Boolean> {
+    async removeTodo(id: string, userId: string): Promise<Boolean> {
+        const todo = await this.todoRepository.findOne({ where: { id }});
+        if (userId !== todo.userId) throw new Error("You are not authorized to perform this task");
         const { affected } = await this.todoRepository.delete(id);
         if (affected && affected > 0) return true;
         return false;
@@ -71,8 +73,10 @@ export class TodoService {
     }
 
     // Function to change status of Todo
-    async changeStatus(id: string): Promise<Todo> {
+    async changeStatus(id: string, userId: string): Promise<Todo> {
         const todo = await this.todoRepository.findOne(id);
+        // If logged in user id does not match todo user id, prevent user from changing status
+        if (userId !== todo.userId) throw new Error("You are not authorized to perform this task");
         if (todo.status === 'open') {
             todo.dateCompleted = new Date().toISOString();
             todo.status = 'complete';
@@ -87,8 +91,10 @@ export class TodoService {
     }
 
     // Update Todo
-    async updateTodo(id: string, data: InputTodo): Promise<Todo> {
+    async updateTodo(id: string, data: InputTodo, userId: string): Promise<Todo> {
         const todo = await this.todoRepository.findOne(id);
+        // If logged in user id does not equal todo user id, prevent update of todo
+        if(userId !== todo.userId) throw new Error("You are not authorized to perform this task");
         // update the dueDate of the todo to an ISOString and save it
         todo.dueDate = new Date(data.dueDate).toISOString();
         // remove the dueDate from the data object and save the todo in database
