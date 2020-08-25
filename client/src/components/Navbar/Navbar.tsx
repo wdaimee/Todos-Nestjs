@@ -8,15 +8,22 @@ import { client } from '../../index';
 
 export interface NavbarProps {
     setShow: React.Dispatch<React.SetStateAction<boolean>>,
+    setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>,
     history: History,
     user: User
 }
 
-const Navbar: React.FC<NavbarProps> = ({ history, setShow, user }) => {
+const Navbar: React.FC<NavbarProps> = ({ history, setShow, user, setShowEditModal }) => {
     const logout = () => {
         deleteToken();
         client.clearStore();
         history.push('login');
+    }
+
+    // Function to open add modal, if edit modal is open, close edit modal
+    const openAddModal = (e: any) => {
+        setShow(true);
+        setShowEditModal(false);
     }
 
     return(
@@ -33,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ history, setShow, user }) => {
                     <StyledP>history</StyledP>
                 </IconHolderDiv>
             </Link>
-            <IconHolderDiv onClick={e => setShow(true)}>
+            <IconHolderDiv onClick={openAddModal}>
                 <StyledIcon icon="addIcon" size="2.5rem" color="mintCream"/>
                 <StyledP>add</StyledP>
             </IconHolderDiv>
