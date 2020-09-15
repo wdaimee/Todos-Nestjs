@@ -90,9 +90,11 @@ export const StyledNotes = styled.p<Props>`
 `;
 
 export const StyledDate = styled.p<Props>`
+    text-transform: uppercase;
     font-size: 1.0rem;
     text-shadow: ${props => props.status === 'open' ? '3px 3px 5px #808080' : 'none'};
     margin: 0;
     justify-self: center;
+    align-self: center;
     grid-column-end: span 2;
 `;
